@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../buildMultiTargeting/Sample.GoogleCalendarApi.props" />
+</Project>
