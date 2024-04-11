@@ -40,11 +40,19 @@
           "dependencies": {
             "Google.Apis.Auth": {
               "target": "Package",
-              "version": "[1.57.0, )"
+              "version": "[1.67.0, )"
             },
             "Google.Apis.Calendar.v3": {
               "target": "Package",
               "version": "[1.57.0.2759, )"
+            },
+            "Google.Apis.Drive.v2": {
+              "target": "Package",
+              "version": "[1.67.0.3296, )"
+            },
+            "NodaTime": {
+              "target": "Package",
+              "version": "[3.1.11, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

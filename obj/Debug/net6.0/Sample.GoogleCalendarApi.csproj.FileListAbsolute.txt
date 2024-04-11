@@ -6,7 +6,6 @@
 /Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/bin/Debug/net6.0/Sample.GoogleCalendarApi.dll
 /Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/bin/Debug/net6.0/Sample.GoogleCalendarApi.pdb
 /Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/bin/Debug/net6.0/Google.Apis.dll
-/Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/bin/Debug/net6.0/Google.Apis.Auth.PlatformServices.dll
 /Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/bin/Debug/net6.0/Google.Apis.Auth.dll
 /Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/bin/Debug/net6.0/Google.Apis.Calendar.v3.dll
 /Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/bin/Debug/net6.0/Google.Apis.Core.dll
@@ -37,3 +36,8 @@
 /Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/obj/Debug/net6.0/Sample.GoogleCalendarApi.pdb
 /Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/obj/Debug/net6.0/Sample.GoogleCalendarApi.genruntimeconfig.cache
 /Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/obj/Debug/net6.0/ref/Sample.GoogleCalendarApi.dll
+/Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/bin/Debug/net6.0/NodaTime.dll
+/Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/bin/Debug/net6.0/Google.Apis.Drive.v2.dll
+/Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/bin/Debug/net6.0/System.CodeDom.dll
+/Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/bin/Debug/net6.0/System.Management.dll
+/Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/bin/Debug/net6.0/runtimes/win/lib/net6.0/System.Management.dll

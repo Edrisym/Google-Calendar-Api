@@ -1,23 +1,28 @@
 {
   "version": 2,
-  "dgSpecHash": "Q84APkBuYQpPDyMlQcvM1rDfzIjYbIfq2DjLc+lr8a4fSStNGCvXzOQyo/34F0+JeVnjYXpdFLc/4fuudxaoiQ==",
+  "dgSpecHash": "uiVrgnw34i8+gQdDRtGqPf2kT6iJs3LqXeLWoU2kPTHYdLOYQnCokCF9NWJR1sT+lpR6W14JcAadtPNtPR1vnA==",
   "success": true,
   "projectFilePath": "/Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi.csproj",
   "expectedPackageFiles": [
-    "/Users/edrisym/.nuget/packages/google.apis/1.57.0/google.apis.1.57.0.nupkg.sha512",
-    "/Users/edrisym/.nuget/packages/google.apis.auth/1.57.0/google.apis.auth.1.57.0.nupkg.sha512",
+    "/Users/edrisym/.nuget/packages/google.apis/1.67.0/google.apis.1.67.0.nupkg.sha512",
+    "/Users/edrisym/.nuget/packages/google.apis.auth/1.67.0/google.apis.auth.1.67.0.nupkg.sha512",
     "/Users/edrisym/.nuget/packages/google.apis.calendar.v3/1.57.0.2759/google.apis.calendar.v3.1.57.0.2759.nupkg.sha512",
-    "/Users/edrisym/.nuget/packages/google.apis.core/1.57.0/google.apis.core.1.57.0.nupkg.sha512",
+    "/Users/edrisym/.nuget/packages/google.apis.core/1.67.0/google.apis.core.1.67.0.nupkg.sha512",
+    "/Users/edrisym/.nuget/packages/google.apis.drive.v2/1.67.0.3296/google.apis.drive.v2.1.67.0.3296.nupkg.sha512",
     "/Users/edrisym/.nuget/packages/microsoft.extensions.apidescription.server/3.0.0/microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "/Users/edrisym/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
-    "/Users/edrisym/.nuget/packages/newtonsoft.json/13.0.1/newtonsoft.json.13.0.1.nupkg.sha512",
+    "/Users/edrisym/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512",
+    "/Users/edrisym/.nuget/packages/nodatime/3.1.11/nodatime.3.1.11.nupkg.sha512",
     "/Users/edrisym/.nuget/packages/swashbuckle.aspnetcore/6.2.3/swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
     "/Users/edrisym/.nuget/packages/swashbuckle.aspnetcore.swagger/6.2.3/swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
     "/Users/edrisym/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.2.3/swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
     "/Users/edrisym/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.2.3/swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512",
-    "/Users/edrisym/.nuget/packages/microsoft.netcore.app.ref/6.0.26/microsoft.netcore.app.ref.6.0.26.nupkg.sha512",
+    "/Users/edrisym/.nuget/packages/system.codedom/7.0.0/system.codedom.7.0.0.nupkg.sha512",
+    "/Users/edrisym/.nuget/packages/system.management/7.0.2/system.management.7.0.2.nupkg.sha512",
+    "/Users/edrisym/.nuget/packages/system.runtime.compilerservices.unsafe/4.7.1/system.runtime.compilerservices.unsafe.4.7.1.nupkg.sha512",
     "/Users/edrisym/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.26/microsoft.aspnetcore.app.ref.6.0.26.nupkg.sha512",
-    "/Users/edrisym/.nuget/packages/microsoft.netcore.app.host.osx-arm64/6.0.26/microsoft.netcore.app.host.osx-arm64.6.0.26.nupkg.sha512"
+    "/Users/edrisym/.nuget/packages/microsoft.netcore.app.host.osx-arm64/6.0.26/microsoft.netcore.app.host.osx-arm64.6.0.26.nupkg.sha512",
+    "/Users/edrisym/.nuget/packages/microsoft.netcore.app.ref/6.0.26/microsoft.netcore.app.ref.6.0.26.nupkg.sha512"
   ],
   "logs": []
 }

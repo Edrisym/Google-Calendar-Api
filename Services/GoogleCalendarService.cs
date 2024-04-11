@@ -1,9 +1,11 @@
-﻿using Google.Apis.Auth.OAuth2;
+﻿using CalendarApi.Common;
+using Google.Apis.Auth.OAuth2;
 using Google.Apis.Auth.OAuth2.Flows;
 using Google.Apis.Auth.OAuth2.Responses;
 using Google.Apis.Calendar.v3;
 using Google.Apis.Calendar.v3.Data;
 using Google.Apis.Services;
+using Newtonsoft.Json.Linq;
 using Sample.GoogleCalendarApi.Settings;
 
 namespace Sample.GoogleCalendarApi.Services
@@ -42,6 +44,7 @@ namespace Sample.GoogleCalendarApi.Services
                 },
                 Attendees = new EventAttendee[] {
                     new() { Email = "hafkhat.76@gmail.com" },
+                    new() { Email = "edrismaven@gmail.com" }
                 },
                 Reminders = new Event.RemindersData()
                 {
@@ -59,6 +62,7 @@ namespace Sample.GoogleCalendarApi.Services
                 ClientSecret = _settings.ClientSecret
             };
             var token = new TokenResponse { RefreshToken = _settings.RefreshToken };
+
 
             var credential = new UserCredential(new GoogleAuthorizationCodeFlow(
               new GoogleAuthorizationCodeFlow.Initializer
@@ -85,8 +89,35 @@ namespace Sample.GoogleCalendarApi.Services
             }
             catch (System.Exception ex)
             {
-                throw ex;
+                throw new Exception("Create Service Account Calendar Failed", ex);
             }
         }
+
+        public string GetAuthCode()
+        {
+            var credentialsFile = "/Users/edrisym/Desktop/webApp/File/Credentials.json";
+            var credentials = JObject.Parse(System.IO.File.ReadAllText(credentialsFile));
+            ///https://accounts.google.com/o/oauth2/auth?client_id={client_id}&response_type=token&redirect_uri={redirect_uri}&scope={scope}
+            try
+            {
+                string scopeURL1 = "https://accounts.google.com/o/oauth2/auth?redirect_uri={0}&state={1}&response_type={2}&client_id={3}&scope={4}&access_type={5}&include_granted_scopes={6}";
+                var redirectURL = "https://localhost:7086/googlecalendar/callback";
+                string response_type = "code";
+                var client_id = credentials["client_id"];
+                string scope = "https://www.googleapis.com/auth/calendar+https://www.googleapis.com/auth/calendar.events";
+                string access_type = "offline";
+                var state = "successful";
+                var include_granted_scopes = "true";
+                string redirect_uri_encode = Method.UrlEncodeForGoogle(redirectURL);
+                var mainURL = string.Format(scopeURL1, redirect_uri_encode, state, response_type, client_id, scope, access_type, include_granted_scopes);
+
+                return mainURL;
+            }
+            catch (Exception ex)
+            {
+                return ex.ToString();
+            }
+        }
+
     }
 }

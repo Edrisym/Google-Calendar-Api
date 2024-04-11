@@ -5,5 +5,6 @@ namespace Sample.GoogleCalendarApi.Services
     public interface IGoogleCalendarService
     {
         Task<Event> CreateEvent();
+        string GetAuthCode();
     }
 }
