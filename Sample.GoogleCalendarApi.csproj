@@ -8,10 +8,12 @@
 
   <ItemGroup>
     <PackageReference Include="Google.Apis.Auth" Version="1.67.0" />
-    <PackageReference Include="Google.Apis.Calendar.v3" Version="1.57.0.2759" />
+    <PackageReference Include="Google.Apis.Auth.AspNetCore3" Version="1.67.0" />
+    <PackageReference Include="Google.Apis.Calendar.v3" Version="1.67.0.3374" />
     <PackageReference Include="Google.Apis.Drive.v2" Version="1.67.0.3296" />
+    <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="8.0.4" />
     <PackageReference Include="NodaTime" Version="3.1.11" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
 </Project>

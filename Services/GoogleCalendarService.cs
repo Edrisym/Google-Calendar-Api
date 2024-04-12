@@ -5,6 +5,7 @@ using Google.Apis.Auth.OAuth2.Responses;
 using Google.Apis.Calendar.v3;
 using Google.Apis.Calendar.v3.Data;
 using Google.Apis.Services;
+using Google.Apis.Util;
 using Newtonsoft.Json.Linq;
 using Sample.GoogleCalendarApi.Settings;
 
@@ -13,6 +14,7 @@ namespace Sample.GoogleCalendarApi.Services
     public class GoogleCalendarService : IGoogleCalendarService
     {
         private readonly IGoogleCalendarSettings _settings;
+
 
         public GoogleCalendarService(IGoogleCalendarSettings settings)
         {
@@ -55,12 +57,27 @@ namespace Sample.GoogleCalendarApi.Services
                     }
                 }
             };
+            var clientId = _settings.ClientId;
+            var clientSecre = _settings.ClientSecret;
+            var scopes = _settings.Scope;
+
+            //var  = new
+            //{
+            //    CalendarService.Scope.Calendar,
+            //    CalendarService.Scope.CalendarEvents
+            //};
+
+
 
             var secrets = new ClientSecrets()
             {
-                ClientId = _settings.ClientId,
-                ClientSecret = _settings.ClientSecret
+                ClientId = clientId,
+                ClientSecret = clientSecre
             };
+
+
+            RefreshAccessToken(clientId, clientSecre, scopes);
+
             var token = new TokenResponse { RefreshToken = _settings.RefreshToken };
 
 
@@ -93,6 +110,25 @@ namespace Sample.GoogleCalendarApi.Services
             }
         }
 
+
+
+        public static void RefreshAccessToken(string clientId, string clientSecret, string[] scopes)
+        {
+            var credentials = GoogleWebAuthorizationBroker.AuthorizeAsync
+            (new ClientSecrets
+            {
+                ClientId = clientId,
+                ClientSecret = clientSecret,
+            },
+            scopes, "user",
+            CancellationToken.None,
+            ).Result;
+            if (credentials.Token.IsExpired(SystemClock.Default))
+                credentials.RefreshTokenAsync(CancellationToken.None).Wait();
+        }
+
+
+
         public string GetAuthCode()
         {
             var credentialsFile = "/Users/edrisym/Desktop/webApp/File/Credentials.json";
@@ -101,7 +137,7 @@ namespace Sample.GoogleCalendarApi.Services
             try
             {
                 string scopeURL1 = "https://accounts.google.com/o/oauth2/auth?redirect_uri={0}&state={1}&response_type={2}&client_id={3}&scope={4}&access_type={5}&include_granted_scopes={6}";
-                var redirectURL = "https://localhost:7086/googlecalendar/callback";
+                var redirectURL = "https://localhost:7086/oauth/callback";
                 string response_type = "code";
                 var client_id = credentials["client_id"];
                 string scope = "https://www.googleapis.com/auth/calendar+https://www.googleapis.com/auth/calendar.events";
@@ -118,6 +154,8 @@ namespace Sample.GoogleCalendarApi.Services
                 return ex.ToString();
             }
         }
+
+
 
     }
 }
