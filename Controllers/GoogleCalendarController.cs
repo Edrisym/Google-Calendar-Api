@@ -1,5 +1,4 @@
-﻿using Google.Apis.Calendar.v3.Data;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Sample.GoogleCalendarApi.Services;
 
 namespace Sample.GoogleCalendarApi.Controllers
@@ -28,14 +27,6 @@ namespace Sample.GoogleCalendarApi.Controllers
         public async Task<IActionResult> CreateEvent()
         {
             return Ok(await _googleCalendarService.CreateEvent());
-        }
-
-        [HttpPost]
-        [Route("/GoogleCalendar/Callback")]
-        public void Callback(string code, string error, string state)
-        {
-           // if (string.IsNullOrWhiteSpace(error))
-           //     this.GetTokens(code);
         }
     }
 }
