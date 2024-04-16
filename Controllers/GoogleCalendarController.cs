@@ -19,8 +19,8 @@ namespace Sample.GoogleCalendarApi.Controllers
         [Route("/GoogleCalendar/GetOauthCode")]
         public IActionResult GetOauthCode()
         {
-            var get = _googleCalendarService.GetAuthCode();
-            return Redirect(get);
+            var tokenCode = _googleCalendarService.GetAuthCode();
+            return Redirect(tokenCode);
         }
 
         [HttpPost]
@@ -30,12 +30,12 @@ namespace Sample.GoogleCalendarApi.Controllers
             return Ok(await _googleCalendarService.CreateEvent());
         }
 
-        //[HttpPost]
-        //[Route("/GoogleCalendar/Callback")]
-        //public void Callback(string code, string error, string state)
-        //{
-        //    // if (string.IsNullOrWhiteSpace(error))
-        //    //     this.GetTokens(code);
-        //}
+        [HttpPost]
+        [Route("/GoogleCalendar/Callback")]
+        public void Callback(string code, string error, string state)
+        {
+           // if (string.IsNullOrWhiteSpace(error))
+           //     this.GetTokens(code);
+        }
     }
 }

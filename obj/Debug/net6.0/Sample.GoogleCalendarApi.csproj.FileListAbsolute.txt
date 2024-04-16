@@ -48,9 +48,10 @@
 /Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/obj/Debug/net6.0/staticwebassets.build.json
 /Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/obj/Debug/net6.0/staticwebassets.development.json
 /Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/obj/Debug/net6.0/scopedcss/bundle/Sample.GoogleCalendarApi.styles.css
-/Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/obj/Debug/net6.0/Sample.GoogleCalendarApi.csproj.CopyComplete
 /Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/obj/Debug/net6.0/Sample.GoogleCalendarApi.dll
 /Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/obj/Debug/net6.0/refint/Sample.GoogleCalendarApi.dll
 /Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/obj/Debug/net6.0/Sample.GoogleCalendarApi.pdb
 /Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/obj/Debug/net6.0/Sample.GoogleCalendarApi.genruntimeconfig.cache
 /Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/obj/Debug/net6.0/ref/Sample.GoogleCalendarApi.dll
+/Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/obj/Debug/net6.0/Sample.GoogleCalendarApi.sourcelink.json
+/Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/obj/Debug/net6.0/Sample.G.6A1A21DB.Up2Date

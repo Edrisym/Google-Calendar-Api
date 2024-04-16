@@ -121,8 +121,7 @@ namespace Sample.GoogleCalendarApi.Services
                 ClientSecret = clientSecret,
             },
             scopes, "user",
-            CancellationToken.None,
-            ).Result;
+            CancellationToken.None).Result;
             if (credentials.Token.IsExpired(SystemClock.Default))
                 credentials.RefreshTokenAsync(CancellationToken.None).Wait();
         }
@@ -133,7 +132,7 @@ namespace Sample.GoogleCalendarApi.Services
         {
             var credentialsFile = "/Users/edrisym/Desktop/webApp/File/Credentials.json";
             var credentials = JObject.Parse(System.IO.File.ReadAllText(credentialsFile));
-            ///https://accounts.google.com/o/oauth2/auth?client_id={client_id}&response_type=token&redirect_uri={redirect_uri}&scope={scope}
+            //https://accounts.google.com/o/oauth2/auth?client_id={client_id}&response_type=token&redirect_uri={redirect_uri}&scope={scope}
             try
             {
                 string scopeURL1 = "https://accounts.google.com/o/oauth2/auth?redirect_uri={0}&state={1}&response_type={2}&client_id={3}&scope={4}&access_type={5}&include_granted_scopes={6}";
