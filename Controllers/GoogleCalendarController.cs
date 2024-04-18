@@ -15,8 +15,6 @@ namespace Sample.GoogleCalendarApi.Controllers
             _googleCalendarService = googleCalendarService;
         }
 
-     
-
         [HttpPost]
         [Route("/GoogleCalendar/CreateEvent")]
         public async Task<IActionResult> CreateEvent()
@@ -34,6 +32,5 @@ namespace Sample.GoogleCalendarApi.Controllers
             else
                 return BadRequest();
         }
-
     }
 }

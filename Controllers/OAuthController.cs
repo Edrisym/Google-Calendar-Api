@@ -55,8 +55,11 @@ namespace Sample.GoogleCalendarApi.Controllers
         [Route("/oauth/getoauthcode")]
         public IActionResult GetOauthCode()
         {
-            var tokenCode = _googleCalendarService.GetAuthCode();
-            return Redirect(tokenCode);
+            var uri = _googleCalendarService.GetAuthCode();
+            if (String.IsNullOrEmpty(uri))
+                return Redirect(uri);
+            else
+                return BadRequest();
         }
     }
 }
