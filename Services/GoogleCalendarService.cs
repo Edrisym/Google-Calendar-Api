@@ -10,78 +10,67 @@ using System.IO;
 using Newtonsoft.Json.Linq;
 using Sample.GoogleCalendarApi.Settings;
 using RestSharp;
+using Newtonsoft.Json;
+using Sample.GoogleCalendarApi.Common.Model;
 
 namespace Sample.GoogleCalendarApi.Services
 {
     public class GoogleCalendarService : IGoogleCalendarService
     {
         private readonly IGoogleCalendarSettings _settings;
-        private const string refreshToken = "https://oauth2.googleapis.com/token";
+        private const string _ScopeToken = "https://oauth2.googleapis.com/token";
 
         public GoogleCalendarService(IGoogleCalendarSettings settings)
         {
             _settings = settings;
         }
 
-        /// <summary>
-        ///  Create Google Calendar Event base on out request
-        /// </summary>
-        /// <param name="request">Google Event model where we write information about out Event</param>
-        /// <param name="cancellationToken">Google Event model where we write information about out Event</param>
-        /// <returns>Google Event</returns>
-        public async Task<Event> CreateEvent()
+        private Event Create(EventModel model)
         {
-            var newEvent = new Event()
+            var eventAttendees = new List<EventAttendee>();
+
+            foreach (var attendee in model.Attendees)
             {
-                Summary = "this is an invitation",
-                Location = "tehran",
-                Description = "this is edris ghafouri",
+                var eventAttendee = new EventAttendee
+                {
+                    Email = attendee.AttendeeEmails,
+                    DisplayName = attendee.AtendeeName
+                };
+                eventAttendees.Add(eventAttendee);
+            }
+
+            var createdEvent = new Event()
+            {
+                Summary = model.Summary,
+                Location = model.Location,
+                Description = model.Description,
                 Start = new EventDateTime()
                 {
-                    DateTime = DateTime.Now,
-                    TimeZone = "Asia/Tehran",
+                    DateTime = model.StartDateTime,
+                    TimeZone = model.TimeZone,
                 },
                 End = new EventDateTime()
                 {
-                    DateTime = DateTime.Now,
-                    TimeZone = "Asia/Tehran",
+                    DateTime = model.EndDateTime,
+                    TimeZone = model.TimeZone,
                 },
-                Attendees = new EventAttendee[] {
-                    new() { Email = "hafkhat.76@gmail.com" },
-                    new() { Email = "edrismaven@gmail.com" }
-                },
-                Reminders = new Event.RemindersData()
-                {
-                    UseDefault = false,
-                    Overrides = new EventReminder[] {
-                        new() { Method = "email", Minutes = 24 * 60 },
-                        new() { Method = "sms", Minutes = 10 },
-                    }
-                }
+                Attendees = eventAttendees
             };
-            var clientId = _settings.ClientId;
-            var clientSecre = _settings.ClientSecret;
-            var scopes = _settings.Scope;
+            return createdEvent;
+        }
 
-            //var  = new
-            //{
-            //    CalendarService.Scope.Calendar,
-            //    CalendarService.Scope.CalendarEvents
-            //};
-
-
-
+        public async Task<Event> CreateEvent(EventModel model)
+        {
+            var newEvent = Create(model);
             var secrets = new ClientSecrets()
             {
-                ClientId = clientId,
-                ClientSecret = clientSecre
+                ClientId = _settings.ClientId,
+                ClientSecret = _settings.ClientSecret
             };
-
 
             // RefreshAccessToken(clientId, clientSecre, scopes);
 
             var token = new TokenResponse { RefreshToken = _settings.RefreshToken };
-
 
             var credential = new UserCredential(new GoogleAuthorizationCodeFlow(
               new GoogleAuthorizationCodeFlow.Initializer
@@ -106,7 +95,7 @@ namespace Sample.GoogleCalendarApi.Services
                 Console.WriteLine("Event created: {0}", createdEvent.HtmlLink);
                 return createdEvent;
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception("Create Service Account Calendar Failed", ex);
             }
@@ -118,8 +107,8 @@ namespace Sample.GoogleCalendarApi.Services
         {
             string tokenFile = "/Users/edrisym/Desktop/webApp/File/token.json";
             string CredentialsFile = "/Users/edrisym/Desktop/webApp/File/Credentials.json";
-            var credentials = JObject.Parse(System.IO.File.ReadAllText(CredentialsFile));
-            var token = JObject.Parse(System.IO.File.ReadAllText(tokenFile));
+            var credentials = JObject.Parse(File.ReadAllText(CredentialsFile));
+            var token = JObject.Parse(File.ReadAllText(tokenFile));
 
             var restClient = new RestClient();
             var request = new RestRequest();
@@ -129,15 +118,15 @@ namespace Sample.GoogleCalendarApi.Services
             request.AddQueryParameter("grant_type", "refresh_token");
             request.AddQueryParameter("refresh_token", token["refresh_token"].ToString());
 
-            restClient = new RestClient("https://oauth2.googleapis.com/token");
+            restClient = new RestClient(_ScopeToken);
 
             var response = restClient.ExecutePost(request);
             if (response.IsSuccessStatusCode == true)
             {
                 var newTokens = JObject.Parse(response.Content);
                 newTokens["refresh_token"] = token["refresh_token"].ToString();
-                Console.WriteLine($"Refresh Token was successfully Made!{newTokens["refresh_token"].ToString()}");
-
+                Console.WriteLine($"Refresh Token was successfully Made! {newTokens["refresh_token"]}");
+                UpdateAppSettingJson(newTokens["refresh_token"].ToString());
                 File.WriteAllText(tokenFile, newTokens.ToString());
 
             }
@@ -145,6 +134,23 @@ namespace Sample.GoogleCalendarApi.Services
 
         }
 
+
+        public void UpdateAppSettingJson(string refreshToken)
+        {
+            // Read the JSON file
+            string jsonFilePath = "appsettings.Development.json";
+            string jsonString = File.ReadAllText(jsonFilePath);
+
+            dynamic jsonObj = JsonConvert.DeserializeObject(jsonString);
+
+            jsonObj["GoogleCalendarSettings"]["RefreshToken"] = refreshToken;
+
+            string updatedJsonString = JsonConvert.SerializeObject(jsonObj, Formatting.Indented);
+
+            File.WriteAllText(jsonFilePath, updatedJsonString);
+
+            Console.WriteLine($"RefreshToken updated successfully. {refreshToken}");
+        }
 
 
         public string GetAuthCode()
@@ -216,7 +222,7 @@ namespace Sample.GoogleCalendarApi.Services
             // request.AddQueryParameter("prompt", "consent");
             request.AddQueryParameter("redirect_uri", "https://localhost:7086/oauth/callback");
 
-            restClient = new RestClient(refreshToken);
+            restClient = new RestClient(_ScopeToken);
 
             var response = restClient.ExecutePost(request);
             Console.WriteLine("request was successfully sent!");
@@ -230,5 +236,6 @@ namespace Sample.GoogleCalendarApi.Services
             }
             return response.IsSuccessful;
         }
+
     }
 }

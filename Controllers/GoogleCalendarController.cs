@@ -1,5 +1,6 @@
 ﻿using System.Formats.Asn1;
 using Microsoft.AspNetCore.Mvc;
+using Sample.GoogleCalendarApi.Common.Model;
 using Sample.GoogleCalendarApi.Services;
 
 namespace Sample.GoogleCalendarApi.Controllers
@@ -17,9 +18,9 @@ namespace Sample.GoogleCalendarApi.Controllers
 
         [HttpPost]
         [Route("/GoogleCalendar/CreateEvent")]
-        public async Task<IActionResult> CreateEvent()
+        public async Task<IActionResult> CreateEvent(EventModel model)
         {
-            return Ok(await _service.CreateEvent());
+            return Ok(await _service.CreateEvent(model));
         }
 
         [HttpGet]
