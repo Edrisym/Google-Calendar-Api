@@ -1,4 +1,5 @@
-﻿using Google.Apis.Calendar.v3.Data;
+﻿using System.Diagnostics.Eventing.Reader;
+using Google.Apis.Calendar.v3.Data;
 
 namespace Sample.GoogleCalendarApi.Services
 {
@@ -6,5 +7,9 @@ namespace Sample.GoogleCalendarApi.Services
     {
         Task<Event> CreateEvent();
         string GetAuthCode();
+        bool RevokeToken();
+        bool RefreshAccessToken(string clientId, string clientSecret, string[] scopes);
+
+        bool GetToken(string token);
     }
 }

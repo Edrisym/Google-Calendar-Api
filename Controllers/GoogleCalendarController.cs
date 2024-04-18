@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Formats.Asn1;
+using Microsoft.AspNetCore.Mvc;
 using Sample.GoogleCalendarApi.Services;
 
 namespace Sample.GoogleCalendarApi.Controllers
@@ -14,13 +15,7 @@ namespace Sample.GoogleCalendarApi.Controllers
             _googleCalendarService = googleCalendarService;
         }
 
-        [HttpGet]
-        [Route("/GoogleCalendar/GetOauthCode")]
-        public IActionResult GetOauthCode()
-        {
-            var tokenCode = _googleCalendarService.GetAuthCode();
-            return Redirect(tokenCode);
-        }
+     
 
         [HttpPost]
         [Route("/GoogleCalendar/CreateEvent")]
@@ -28,5 +23,17 @@ namespace Sample.GoogleCalendarApi.Controllers
         {
             return Ok(await _googleCalendarService.CreateEvent());
         }
+
+        [HttpGet]
+        [Route("/GoogleCalendar/Revoke")]
+        public async Task<IActionResult> Revoke()
+        {
+            var statusCode = _googleCalendarService.RevokeToken();
+            if (statusCode)
+                return Ok();
+            else
+                return BadRequest();
+        }
+
     }
 }

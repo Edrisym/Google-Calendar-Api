@@ -55,3 +55,9 @@
 /Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/obj/Debug/net6.0/ref/Sample.GoogleCalendarApi.dll
 /Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/obj/Debug/net6.0/Sample.GoogleCalendarApi.sourcelink.json
 /Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/obj/Debug/net6.0/Sample.G.6A1A21DB.Up2Date
+/Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/bin/Debug/net6.0/System.Net.Http.Extensions.dll
+/Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/bin/Debug/net6.0/System.Net.Http.Primitives.dll
+/Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/bin/Debug/net6.0/RestSharp.dll
+/Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/bin/Debug/net6.0/System.Text.Encodings.Web.dll
+/Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/bin/Debug/net6.0/System.Text.Json.dll
+/Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/bin/Debug/net6.0/runtimes/browser/lib/net6.0/System.Text.Encodings.Web.dll
