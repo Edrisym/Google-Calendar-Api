@@ -56,7 +56,7 @@ namespace Sample.GoogleCalendarApi.Controllers
         public IActionResult GetOauthCode()
         {
             var uri = _googleCalendarService.GetAuthCode();
-            if (String.IsNullOrEmpty(uri))
+            if (!String.IsNullOrEmpty(uri))
                 return Redirect(uri);
             else
                 return BadRequest();
