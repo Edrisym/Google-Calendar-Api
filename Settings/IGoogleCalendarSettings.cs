@@ -9,6 +9,5 @@
         string ApplicationName { get; set; }
         string User { get; set; }
         string CalendarId { get; }
-        string RefreshToken { get; set; }
     }
 }
