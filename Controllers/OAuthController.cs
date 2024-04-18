@@ -9,6 +9,7 @@ namespace Sample.GoogleCalendarApi.Controllers
     {
         private readonly IGoogleCalendarService _service;
         private readonly IGoogleCalendarSettings _settings;
+        private const string _ScopeToken = "https://oauth2.googleapis.com/token";
         public OAuthController(IGoogleCalendarService service, IGoogleCalendarSettings settings)
         {
             _service = service;
@@ -33,7 +34,7 @@ namespace Sample.GoogleCalendarApi.Controllers
         public async Task<IActionResult> GenerateRefreshToken()
         {
 
-            var status = _service.RefreshAccessToken(_settings.ClientId, _settings.ClientSecret, _settings.ScopeToken);
+            var status = _service.RefreshAccessToken(_settings.ClientId, _settings.ClientSecret, _ScopeToken);
             if (status)
                 return Ok();
             else

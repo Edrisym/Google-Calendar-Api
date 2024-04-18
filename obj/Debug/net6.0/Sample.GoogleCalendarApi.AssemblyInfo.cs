@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Sample.GoogleCalendarApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bd100dff08757b38e66058fb7f9f0f727ed9a65f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+900e10fbdf6242751724a414f3ececcb4b3f6854")]
 [assembly: System.Reflection.AssemblyProductAttribute("Sample.GoogleCalendarApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Sample.GoogleCalendarApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

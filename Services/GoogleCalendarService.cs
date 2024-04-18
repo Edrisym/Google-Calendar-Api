@@ -160,7 +160,7 @@ namespace Sample.GoogleCalendarApi.Services
             //https://accounts.google.com/o/oauth2/auth?client_id={client_id}&response_type=token&redirect_uri={redirect_uri}&scope={scope}
             try
             {
-                string scopeURL1 = "https://accounts.google.com/o/oauth2/auth?redirect_uri={0}&state={1}&response_type={2}&client_id={3}&scope={4}&access_type={5}&include_granted_scopes={6}&prompt={7}";
+                string scopeURL1 = "https://accounts.google.com/o/oauth2/auth?redirect_uri={0}&state={1}&response_type={2}&client_id={3}&scope={4}&access_type={5}&include_granted_scopes={6}&login_hint={7}";
                 var redirectURL = "https://localhost:7086/oauth/callback";
                 string response_type = "code";
                 var client_id = credentials["client_id"];
@@ -168,9 +168,10 @@ namespace Sample.GoogleCalendarApi.Services
                 string access_type = "offline";
                 var state = "successful";
                 var include_granted_scopes = "true";
-                var prompt = "select_account";
+                // var prompt = "select_account";
+                var login_hint = _settings.LoginHint;
                 string redirect_uri_encode = CalendarApi.Common.Method.UrlEncodeForGoogle(redirectURL);
-                var mainURL = string.Format(scopeURL1, redirect_uri_encode, state, response_type, client_id, scope, access_type, include_granted_scopes, prompt);
+                var mainURL = string.Format(scopeURL1, redirect_uri_encode, state, response_type, client_id, scope, access_type, include_granted_scopes, login_hint);
 
                 return mainURL;
             }
