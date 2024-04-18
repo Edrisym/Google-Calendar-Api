@@ -8,25 +8,25 @@ namespace Sample.GoogleCalendarApi.Controllers
     [ApiController]
     public class GoogleCalendarController : ControllerBase
     {
-        private readonly IGoogleCalendarService _googleCalendarService;
+        private readonly IGoogleCalendarService _service;
 
-        public GoogleCalendarController(IGoogleCalendarService googleCalendarService)
+        public GoogleCalendarController(IGoogleCalendarService service)
         {
-            _googleCalendarService = googleCalendarService;
+            _service = service;
         }
 
         [HttpPost]
         [Route("/GoogleCalendar/CreateEvent")]
         public async Task<IActionResult> CreateEvent()
         {
-            return Ok(await _googleCalendarService.CreateEvent());
+            return Ok(await _service.CreateEvent());
         }
 
         [HttpGet]
         [Route("/GoogleCalendar/Revoke")]
         public async Task<IActionResult> Revoke()
         {
-            var statusCode = _googleCalendarService.RevokeToken();
+            var statusCode = _service.RevokeToken();
             if (statusCode)
                 return Ok();
             else
