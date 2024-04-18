@@ -18,19 +18,19 @@ namespace Sample.GoogleCalendarApi.Controllers
     [ApiController]
     public class OAuthController : ControllerBase
     {
-        private readonly IGoogleCalendarService _googleCalendarService;
-        private readonly IGoogleCalendarSettings _googleCalendarSettings;
-        public OAuthController(IGoogleCalendarService googleCalendarService, IGoogleCalendarSettings googleCalendarSettings)
+        private readonly IGoogleCalendarService _service;
+        private readonly IGoogleCalendarSettings _settings;
+        public OAuthController(IGoogleCalendarService service, IGoogleCalendarSettings settings)
         {
-            _googleCalendarService = googleCalendarService;
-            _googleCalendarSettings = googleCalendarSettings;
+            _service = service;
+            _settings = settings;
         }
         [HttpGet]
         [Route("oauth/callback")]
         public async Task<IActionResult> Callback(string code, string? error, string state)
         {
             if (string.IsNullOrWhiteSpace(error))
-                if (_googleCalendarService.GetToken(code))
+                if (_service.GetToken(code))
                     return Ok();
                 else
                     return BadRequest();
@@ -43,8 +43,8 @@ namespace Sample.GoogleCalendarApi.Controllers
         [Route("/googlecalendar/generaterefreshtoken")]
         public async Task<IActionResult> GenerateRefreshToken()
         {
-            var scopes = new[] { "https://oauth2.googleapis.com/token" };
-            var status = _googleCalendarService.RefreshAccessToken(_googleCalendarSettings.ClientId, _googleCalendarSettings.ClientSecret, scopes);
+
+            var status = _service.RefreshAccessToken(_settings.ClientId, _settings.ClientSecret, _settings.ScopeToken);
             if (status)
                 return Ok();
             else
@@ -55,7 +55,7 @@ namespace Sample.GoogleCalendarApi.Controllers
         [Route("/oauth/getoauthcode")]
         public IActionResult GetOauthCode()
         {
-            var uri = _googleCalendarService.GetAuthCode();
+            var uri = _service.GetAuthCode();
             if (!String.IsNullOrEmpty(uri))
                 return Redirect(uri);
             else

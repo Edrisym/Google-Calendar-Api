@@ -114,7 +114,7 @@ namespace Sample.GoogleCalendarApi.Services
 
 
 
-        public bool RefreshAccessToken(string clientId, string clientSecret, string[] scopes)
+        public bool RefreshAccessToken(string clientId, string clientSecret, string scopes)
         {
             string tokenFile = "/Users/edrisym/Desktop/webApp/File/token.json";
             string CredentialsFile = "/Users/edrisym/Desktop/webApp/File/Credentials.json";

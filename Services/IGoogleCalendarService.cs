@@ -8,7 +8,7 @@ namespace Sample.GoogleCalendarApi.Services
         Task<Event> CreateEvent();
         string GetAuthCode();
         bool RevokeToken();
-        bool RefreshAccessToken(string clientId, string clientSecret, string[] scopes);
+        bool RefreshAccessToken(string clientId, string clientSecret, string scopes);
 
         bool GetToken(string token);
     }
