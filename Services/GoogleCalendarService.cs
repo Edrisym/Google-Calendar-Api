@@ -18,11 +18,15 @@ namespace Sample.GoogleCalendarApi.Services
     public class GoogleCalendarService : IGoogleCalendarService
     {
         private readonly IGoogleCalendarSettings _settings;
+        private readonly IOAuthService _oAuthService;
         private const string _ScopeToken = "https://oauth2.googleapis.com/token";
+        private const string _TokenPath = "OAuthFiles/Token.json";
+        private const string _CredentialsPath = "OAuthFiles/Credentials.json";
 
-        public GoogleCalendarService(IGoogleCalendarSettings settings)
+        public GoogleCalendarService(IGoogleCalendarSettings settings, IOAuthService oAuthService)
         {
             _settings = settings;
+            _oAuthService = oAuthService;
         }
 
         private Event Create(EventModel model)
@@ -62,6 +66,7 @@ namespace Sample.GoogleCalendarApi.Services
         public async Task<Event> CreateEvent(EventModel model)
         {
             var newEvent = Create(model);
+
             var secrets = new ClientSecrets()
             {
                 ClientId = _settings.ClientId,
@@ -105,33 +110,31 @@ namespace Sample.GoogleCalendarApi.Services
 
         public bool RefreshAccessToken(string clientId, string clientSecret, string scopes)
         {
-            string tokenFile = "/Users/edrisym/Desktop/webApp/File/token.json";
-            string CredentialsFile = "/Users/edrisym/Desktop/webApp/File/Credentials.json";
-            var credentials = JObject.Parse(File.ReadAllText(CredentialsFile));
-            var token = JObject.Parse(File.ReadAllText(tokenFile));
+            var credentialFile = _oAuthService.CredentialsFile();
+            var tokenFile = _oAuthService.TokenFile();
 
-            var restClient = new RestClient();
+            // var restClient = new RestClient();
             var request = new RestRequest();
 
-            request.AddQueryParameter("client_id", credentials["client_id"].ToString());
-            request.AddQueryParameter("client_secret", credentials["client_secret"].ToString());
+            request.AddQueryParameter("client_id", credentialFile["client_id"].ToString());
+            request.AddQueryParameter("client_secret", credentialFile["client_secret"].ToString());
             request.AddQueryParameter("grant_type", "refresh_token");
-            request.AddQueryParameter("refresh_token", token["refresh_token"].ToString());
+            request.AddQueryParameter("refresh_token", tokenFile["refresh_token"].ToString());
 
-            restClient = new RestClient(_ScopeToken);
+            var restClient = new RestClient(_ScopeToken);
 
             var response = restClient.ExecutePost(request);
             if (response.IsSuccessStatusCode == true)
             {
                 var newTokens = JObject.Parse(response.Content);
-                newTokens["refresh_token"] = token["refresh_token"].ToString();
-                Console.WriteLine($"Refresh Token was successfully Made! {newTokens["refresh_token"]}");
+                newTokens["refresh_token"] = tokenFile["refresh_token"].ToString();
+
                 UpdateAppSettingJson(newTokens["refresh_token"].ToString());
-                File.WriteAllText(tokenFile, newTokens.ToString());
 
+                File.WriteAllText(_TokenPath, newTokens.ToString());
             }
-            return response.IsSuccessStatusCode;
 
+            return response.IsSuccessStatusCode;
         }
 
 
@@ -155,8 +158,8 @@ namespace Sample.GoogleCalendarApi.Services
 
         public string GetAuthCode()
         {
-            var credentialsFile = "/Users/edrisym/Desktop/webApp/File/Credentials.json";
-            var credentials = JObject.Parse(System.IO.File.ReadAllText(credentialsFile));
+            // var credentialsFile = "/Users/edrisym/Desktop/webApp/File/Credentials.json";
+            var credentials = JObject.Parse(System.IO.File.ReadAllText(_CredentialsPath));
             //https://accounts.google.com/o/oauth2/auth?client_id={client_id}&response_type=token&redirect_uri={redirect_uri}&scope={scope}
             try
             {
@@ -183,21 +186,21 @@ namespace Sample.GoogleCalendarApi.Services
 
         public bool RevokeToken()
         {
-            string tokenFile = "/Users/edrisym/Desktop/webApp/File/token.json";
-            var token = JObject.Parse(File.ReadAllText(tokenFile));
 
-            var restClient = new RestClient();
+            var token = JObject.Parse(File.ReadAllText(_TokenPath));
+
+            // var restClient = new RestClient();
             var request = new RestRequest();
 
             request.AddQueryParameter("token", token["access_token"].ToString());
 
-            restClient = new RestClient("https://oauth2.googleapis.com/revoke");
+            var restClient = new RestClient("https://oauth2.googleapis.com/revoke");
             var response = restClient.ExecutePost(request);
 
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                var newtoken = JObject.Parse(System.IO.File.ReadAllText(tokenFile));
-                System.Console.WriteLine("successfully revoked the token = {0}", newtoken);
+                var newtoken = JObject.Parse(System.IO.File.ReadAllText(_TokenPath));
+                Console.WriteLine("successfully revoked the token = {0}", newtoken);
                 // return RedirectToAction("Index", "Home", new { status = "success" });
             }
 
@@ -206,10 +209,9 @@ namespace Sample.GoogleCalendarApi.Services
 
         public bool GetToken(string code)
         {
-            string CredentialsFile = "/Users/edrisym/Desktop/webApp/File/Credentials.json";
-            var credentials = JObject.Parse(System.IO.File.ReadAllText(CredentialsFile));
+            var credentials = JObject.Parse(File.ReadAllText(_CredentialsPath));
 
-            string tokenFile = "/Users/edrisym/Desktop/webApp/File/token.json";
+            // string tokenFile = "/Users/edrisym/Desktop/webApp/File/token.json";
 
             //TODO
             var restClient = new RestClient();
@@ -226,15 +228,14 @@ namespace Sample.GoogleCalendarApi.Services
             restClient = new RestClient(_ScopeToken);
 
             var response = restClient.ExecutePost(request);
-            Console.WriteLine("request was successfully sent!");
 
             if (response.IsSuccessful == true)
             {
-                System.Console.WriteLine("StatusCode is OK!");
-                System.IO.File.WriteAllText(tokenFile, response.Content);
-
-                return response.IsSuccessful;
+                Console.WriteLine("StatusCode is OK!");
+                Console.WriteLine("request was successfully sent!");
+                File.WriteAllText(_TokenPath, response.Content);
             }
+
             return response.IsSuccessful;
         }
 

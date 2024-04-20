@@ -61,3 +61,5 @@
 /Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/bin/Debug/net6.0/System.Text.Encodings.Web.dll
 /Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/bin/Debug/net6.0/System.Text.Json.dll
 /Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/bin/Debug/net6.0/runtimes/browser/lib/net6.0/System.Text.Encodings.Web.dll
+/Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/bin/Debug/net6.0/OAuthFiles/Credentials.json
+/Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/bin/Debug/net6.0/OAuthFiles/Token.json
