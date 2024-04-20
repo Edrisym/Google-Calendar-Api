@@ -21,12 +21,10 @@ namespace Sample.GoogleCalendarApi.Controllers
         {
             if (string.IsNullOrWhiteSpace(error))
                 if (_service.GetToken(code))
-                    return Ok();
+                    return Ok("Access token was generated successfully!");
                 else
-                    return BadRequest();
-
-
-            return Ok();
+                    return BadRequest("Access token failed!!");
+            return Ok("Callbacl method Failed");
         }
 
         [HttpPost]
@@ -36,9 +34,9 @@ namespace Sample.GoogleCalendarApi.Controllers
 
             var status = _service.RefreshAccessToken(_settings.ClientId, _settings.ClientSecret, _ScopeToken);
             if (status)
-                return Ok();
+                return Ok("Refresh token was generated successfully!");
             else
-                return BadRequest();
+                return BadRequest("Refresh token failed!!");
         }
 
         [HttpGet]
@@ -49,7 +47,7 @@ namespace Sample.GoogleCalendarApi.Controllers
             if (!String.IsNullOrEmpty(uri))
                 return Redirect(uri);
             else
-                return BadRequest();
+                return BadRequest("creating Uri redirect was failed!!");
         }
     }
 }

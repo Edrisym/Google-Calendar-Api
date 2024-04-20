@@ -1,4 +1,5 @@
 ﻿using System.Formats.Asn1;
+using Google.Apis.Calendar.v3.Data;
 using Microsoft.AspNetCore.Mvc;
 using Sample.GoogleCalendarApi.Common.Model;
 using Sample.GoogleCalendarApi.Services;
@@ -20,7 +21,11 @@ namespace Sample.GoogleCalendarApi.Controllers
         [Route("/GoogleCalendar/CreateEvent")]
         public async Task<IActionResult> CreateEvent(EventModel model)
         {
-            return Ok(await _service.CreateEvent(model));
+            var createdEvent = await _service.CreateEvent(model);
+            if (createdEvent != null)
+                return Ok("Event calendar was successfully Created!");
+            else
+                return BadRequest("Creting event calendar failed!");
         }
 
         [HttpGet]
@@ -29,9 +34,9 @@ namespace Sample.GoogleCalendarApi.Controllers
         {
             var statusCode = _service.RevokeToken();
             if (statusCode)
-                return Ok();
+                return Ok("Revoked successfully");
             else
-                return BadRequest();
+                return BadRequest("Revoking FAILED!");
         }
     }
 }
