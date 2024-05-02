@@ -17,22 +17,20 @@ namespace Sample.GoogleCalendarApi.Controllers
             _service = service;
         }
 
-        [HttpPost]
-        [Route("/GoogleCalendar/CreateEvent")]
+        [HttpPost("CreateEvent")]
         public async Task<IActionResult> CreateEvent(EventModel model)
         {
             var createdEvent = await _service.CreateEvent(model);
             if (createdEvent != null)
                 return Ok("Event calendar was successfully Created!");
             else
-                return BadRequest("Creting event calendar failed!");
+                return BadRequest("Creating event calendar failed!");
         }
 
-        [HttpGet]
-        [Route("/GoogleCalendar/Revoke")]
+        [HttpGet("Revoke")]
         public async Task<IActionResult> Revoke()
         {
-            var statusCode = _service.RevokeToken();
+            var statusCode =  _service.RevokeToken();
             if (statusCode)
                 return Ok("Revoked successfully");
             else
