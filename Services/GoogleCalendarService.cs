@@ -12,20 +12,21 @@ using Sample.GoogleCalendarApi.Settings;
 using RestSharp;
 using Newtonsoft.Json;
 using Sample.GoogleCalendarApi.Common.Model;
+using Microsoft.Extensions.Options;
 
 namespace Sample.GoogleCalendarApi.Services
 {
     public class GoogleCalendarService : IGoogleCalendarService
     {
-        private readonly IGoogleCalendarSettings _settings;
+        private readonly GoogleCalendarSettings _settings;
         private readonly IOAuthService _oAuthService;
         private const string _ScopeToken = "https://oauth2.googleapis.com/token";
         private const string _TokenPath = "OAuthFiles/Token.json";
         private const string _CredentialsPath = "OAuthFiles/Credentials.json";
 
-        public GoogleCalendarService(IGoogleCalendarSettings settings, IOAuthService oAuthService)
+        public GoogleCalendarService(IOptionsSnapshot<GoogleCalendarSettings> settings, IOAuthService oAuthService)
         {
-            _settings = settings;
+            _settings = settings.Value;
             _oAuthService = oAuthService;
         }
 
@@ -37,8 +38,8 @@ namespace Sample.GoogleCalendarApi.Services
             {
                 var eventAttendee = new EventAttendee
                 {
-                    Email = attendee.AttendeeEmails,
-                    DisplayName = attendee.AtendeeName
+                    Email = attendee.AttendeesEmail,
+                    DisplayName = attendee.AttendeesName
                 };
                 eventAttendees.Add(eventAttendee);
             }
@@ -73,8 +74,6 @@ namespace Sample.GoogleCalendarApi.Services
                 ClientSecret = _settings.ClientSecret
             };
 
-            // RefreshAccessToken(clientId, clientSecre, scopes);
-
             var token = new TokenResponse { RefreshToken = _settings.RefreshToken };
 
             var credential = new UserCredential(new GoogleAuthorizationCodeFlow(
@@ -108,12 +107,11 @@ namespace Sample.GoogleCalendarApi.Services
 
 
 
-        public bool RefreshAccessToken(string clientId, string clientSecret, string scopes)
+        public bool RefreshAccessToken()
         {
             var credentialFile = _oAuthService.CredentialsFile();
             var tokenFile = _oAuthService.TokenFile();
 
-            // var restClient = new RestClient();
             var request = new RestRequest();
 
             request.AddQueryParameter("client_id", credentialFile["client_id"].ToString());
@@ -133,10 +131,8 @@ namespace Sample.GoogleCalendarApi.Services
 
                 File.WriteAllText(_TokenPath, newTokens.ToString());
             }
-
             return response.IsSuccessStatusCode;
         }
-
 
         public void UpdateAppSettingJson(string refreshToken)
         {
@@ -229,8 +225,15 @@ namespace Sample.GoogleCalendarApi.Services
 
             var response = restClient.ExecutePost(request);
 
+            //TODO
             if (response.IsSuccessful == true)
             {
+                var newTokens = JObject.Parse(response.Content);
+                if (newTokens.HasValues)
+                {
+                    UpdateAppSettingJson(newTokens["refresh_token"].ToString());
+                }
+
                 Console.WriteLine("StatusCode is OK!");
                 Console.WriteLine("request was successfully sent!");
                 File.WriteAllText(_TokenPath, response.Content);
