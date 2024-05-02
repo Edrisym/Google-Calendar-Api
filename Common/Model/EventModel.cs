@@ -15,7 +15,7 @@ public class EventModel
 
 public class Attendee
 {
-    public string AttendeeEmails { get; set; }
-    public string AtendeeName { get; set; }
+    public string AttendeesEmail { get; set; }
+    public string AttendeesName { get; set; }
 }
 
