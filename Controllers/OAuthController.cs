@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Sample.GoogleCalendarApi.Services;
 using Sample.GoogleCalendarApi.Settings;
 
@@ -8,12 +9,12 @@ namespace Sample.GoogleCalendarApi.Controllers
     public class OAuthController : ControllerBase
     {
         private readonly IGoogleCalendarService _service;
-        private readonly IGoogleCalendarSettings _settings;
+        private readonly GoogleCalendarSettings _settings;
         private const string _ScopeToken = "https://oauth2.googleapis.com/token";
-        public OAuthController(IGoogleCalendarService service, IGoogleCalendarSettings settings)
+        public OAuthController(IOptionsSnapshot<GoogleCalendarSettings> settings, IGoogleCalendarService service)
         {
-            _service = service;
-            _settings = settings;
+            _settings = settings.Value;
+            _service  = service;
         }
         [HttpGet]
         [Route("oauth/callback")]
@@ -32,7 +33,7 @@ namespace Sample.GoogleCalendarApi.Controllers
         public async Task<IActionResult> GenerateRefreshToken()
         {
 
-            var status = _service.RefreshAccessToken(_settings.ClientId, _settings.ClientSecret, _ScopeToken);
+            var status = _service.RefreshAccessToken(/*_settings.ClientId, _settings.ClientSecret, _ScopeToken*/);
             if (status)
                 return Ok("Refresh token was generated successfully!");
             else

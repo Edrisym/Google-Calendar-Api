@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi.csproj": {}
+    "C:\\Users\\e.ghafouri\\Desktop\\FromGitHub\\Calendar\\CalendarApi\\CalendarApi\\Sample.GoogleCalendarApi.csproj": {}
   },
   "projects": {
-    "/Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi.csproj": {
+    "C:\\Users\\e.ghafouri\\Desktop\\FromGitHub\\Calendar\\CalendarApi\\CalendarApi\\Sample.GoogleCalendarApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi.csproj",
+        "projectUniqueName": "C:\\Users\\e.ghafouri\\Desktop\\FromGitHub\\Calendar\\CalendarApi\\CalendarApi\\Sample.GoogleCalendarApi.csproj",
         "projectName": "Sample.GoogleCalendarApi",
-        "projectPath": "/Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi.csproj",
-        "packagesPath": "/Users/edrisym/.nuget/packages/",
-        "outputPath": "/Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/obj/",
+        "projectPath": "C:\\Users\\e.ghafouri\\Desktop\\FromGitHub\\Calendar\\CalendarApi\\CalendarApi\\Sample.GoogleCalendarApi.csproj",
+        "packagesPath": "C:\\Users\\e.ghafouri\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\e.ghafouri\\Desktop\\FromGitHub\\Calendar\\CalendarApi\\CalendarApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/edrisym/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\e.ghafouri\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -32,11 +34,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -86,8 +83,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -99,7 +95,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.204/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -8,14 +8,10 @@
           "Google.Apis.Core": "1.67.0"
         },
         "compile": {
-          "lib/net6.0/Google.Apis.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net6.0/Google.Apis.dll": {}
         },
         "runtime": {
-          "lib/net6.0/Google.Apis.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net6.0/Google.Apis.dll": {}
         }
       },
       "Google.Apis.Auth/1.67.0": {
@@ -26,14 +22,10 @@
           "System.Management": "7.0.2"
         },
         "compile": {
-          "lib/net6.0/Google.Apis.Auth.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net6.0/Google.Apis.Auth.dll": {}
         },
         "runtime": {
-          "lib/net6.0/Google.Apis.Auth.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net6.0/Google.Apis.Auth.dll": {}
         }
       },
       "Google.Apis.Auth.AspNetCore3/1.67.0": {
@@ -44,14 +36,10 @@
           "Microsoft.AspNetCore.Authorization": "3.0.3"
         },
         "compile": {
-          "lib/netcoreapp3.0/Google.Apis.Auth.AspNetCore3.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/netcoreapp3.0/Google.Apis.Auth.AspNetCore3.dll": {}
         },
         "runtime": {
-          "lib/netcoreapp3.0/Google.Apis.Auth.AspNetCore3.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/netcoreapp3.0/Google.Apis.Auth.AspNetCore3.dll": {}
         }
       },
       "Google.Apis.Calendar.v3/1.67.0.3374": {
@@ -61,14 +49,10 @@
           "Google.Apis.Auth": "1.67.0"
         },
         "compile": {
-          "lib/net6.0/Google.Apis.Calendar.v3.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net6.0/Google.Apis.Calendar.v3.dll": {}
         },
         "runtime": {
-          "lib/net6.0/Google.Apis.Calendar.v3.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net6.0/Google.Apis.Calendar.v3.dll": {}
         }
       },
       "Google.Apis.Core/1.67.0": {
@@ -77,14 +61,10 @@
           "Newtonsoft.Json": "13.0.3"
         },
         "compile": {
-          "lib/net6.0/Google.Apis.Core.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net6.0/Google.Apis.Core.dll": {}
         },
         "runtime": {
-          "lib/net6.0/Google.Apis.Core.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net6.0/Google.Apis.Core.dll": {}
         }
       },
       "Google.Apis.Drive.v2/1.67.0.3296": {
@@ -94,14 +74,10 @@
           "Google.Apis.Auth": "1.67.0"
         },
         "compile": {
-          "lib/net6.0/Google.Apis.Drive.v2.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net6.0/Google.Apis.Drive.v2.dll": {}
         },
         "runtime": {
-          "lib/net6.0/Google.Apis.Drive.v2.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net6.0/Google.Apis.Drive.v2.dll": {}
         }
       },
       "Microsoft.AspNetCore.Authentication.OpenIdConnect/3.0.3": {
@@ -110,14 +86,10 @@
           "Microsoft.IdentityModel.Protocols.OpenIdConnect": "5.5.0"
         },
         "compile": {
-          "lib/netcoreapp3.0/Microsoft.AspNetCore.Authentication.OpenIdConnect.dll": {
-            "related": ".xml"
-          }
+          "lib/netcoreapp3.0/Microsoft.AspNetCore.Authentication.OpenIdConnect.dll": {}
         },
         "runtime": {
-          "lib/netcoreapp3.0/Microsoft.AspNetCore.Authentication.OpenIdConnect.dll": {
-            "related": ".xml"
-          }
+          "lib/netcoreapp3.0/Microsoft.AspNetCore.Authentication.OpenIdConnect.dll": {}
         },
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
@@ -131,27 +103,19 @@
           "Microsoft.Extensions.Options": "8.0.2"
         },
         "compile": {
-          "lib/netstandard2.0/Microsoft.AspNetCore.Authorization.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/Microsoft.AspNetCore.Authorization.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/Microsoft.AspNetCore.Authorization.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/Microsoft.AspNetCore.Authorization.dll": {}
         }
       },
       "Microsoft.AspNetCore.Metadata/8.0.4": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Microsoft.AspNetCore.Metadata.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/Microsoft.AspNetCore.Metadata.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/Microsoft.AspNetCore.Metadata.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/Microsoft.AspNetCore.Metadata.dll": {}
         }
       },
       "Microsoft.Bcl/1.1.10": {
@@ -183,14 +147,10 @@
       "Microsoft.Extensions.DependencyInjection.Abstractions/8.0.1": {
         "type": "package",
         "compile": {
-          "lib/net6.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {}
         },
         "runtime": {
-          "lib/net6.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {}
         },
         "build": {
           "buildTransitive/net6.0/_._": {}
@@ -202,14 +162,10 @@
           "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.1"
         },
         "compile": {
-          "lib/net6.0/Microsoft.Extensions.Logging.Abstractions.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/Microsoft.Extensions.Logging.Abstractions.dll": {}
         },
         "runtime": {
-          "lib/net6.0/Microsoft.Extensions.Logging.Abstractions.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/Microsoft.Extensions.Logging.Abstractions.dll": {}
         },
         "build": {
           "buildTransitive/net6.0/Microsoft.Extensions.Logging.Abstractions.targets": {}
@@ -222,14 +178,10 @@
           "Microsoft.Extensions.Primitives": "8.0.0"
         },
         "compile": {
-          "lib/net6.0/Microsoft.Extensions.Options.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/Microsoft.Extensions.Options.dll": {}
         },
         "runtime": {
-          "lib/net6.0/Microsoft.Extensions.Options.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/Microsoft.Extensions.Options.dll": {}
         },
         "build": {
           "buildTransitive/net6.0/Microsoft.Extensions.Options.targets": {}
@@ -241,14 +193,10 @@
           "System.Runtime.CompilerServices.Unsafe": "6.0.0"
         },
         "compile": {
-          "lib/net6.0/Microsoft.Extensions.Primitives.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/Microsoft.Extensions.Primitives.dll": {}
         },
         "runtime": {
-          "lib/net6.0/Microsoft.Extensions.Primitives.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/Microsoft.Extensions.Primitives.dll": {}
         },
         "build": {
           "buildTransitive/net6.0/_._": {}
@@ -261,27 +209,19 @@
           "Newtonsoft.Json": "10.0.1"
         },
         "compile": {
-          "lib/netstandard2.0/Microsoft.IdentityModel.JsonWebTokens.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/Microsoft.IdentityModel.JsonWebTokens.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/Microsoft.IdentityModel.JsonWebTokens.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/Microsoft.IdentityModel.JsonWebTokens.dll": {}
         }
       },
       "Microsoft.IdentityModel.Logging/5.5.0": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Microsoft.IdentityModel.Logging.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/Microsoft.IdentityModel.Logging.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/Microsoft.IdentityModel.Logging.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/Microsoft.IdentityModel.Logging.dll": {}
         }
       },
       "Microsoft.IdentityModel.Protocols/5.5.0": {
@@ -291,14 +231,10 @@
           "Microsoft.IdentityModel.Tokens": "5.5.0"
         },
         "compile": {
-          "lib/netstandard2.0/Microsoft.IdentityModel.Protocols.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/Microsoft.IdentityModel.Protocols.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/Microsoft.IdentityModel.Protocols.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/Microsoft.IdentityModel.Protocols.dll": {}
         }
       },
       "Microsoft.IdentityModel.Protocols.OpenIdConnect/5.5.0": {
@@ -309,14 +245,10 @@
           "System.IdentityModel.Tokens.Jwt": "5.5.0"
         },
         "compile": {
-          "lib/netstandard2.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll": {}
         }
       },
       "Microsoft.IdentityModel.Tokens/5.5.0": {
@@ -327,14 +259,10 @@
           "System.Security.Cryptography.Cng": "4.5.0"
         },
         "compile": {
-          "lib/netstandard2.0/Microsoft.IdentityModel.Tokens.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/Microsoft.IdentityModel.Tokens.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/Microsoft.IdentityModel.Tokens.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/Microsoft.IdentityModel.Tokens.dll": {}
         }
       },
       "Microsoft.Net.Http/2.2.29": {
@@ -344,46 +272,30 @@
           "Microsoft.Bcl.Build": "1.0.14"
         },
         "compile": {
-          "lib/net45/System.Net.Http.Extensions.dll": {
-            "related": ".XML"
-          },
-          "lib/net45/System.Net.Http.Primitives.dll": {
-            "related": ".xml"
-          }
+          "lib/net45/System.Net.Http.Extensions.dll": {},
+          "lib/net45/System.Net.Http.Primitives.dll": {}
         },
         "runtime": {
-          "lib/net45/System.Net.Http.Extensions.dll": {
-            "related": ".XML"
-          },
-          "lib/net45/System.Net.Http.Primitives.dll": {
-            "related": ".xml"
-          }
+          "lib/net45/System.Net.Http.Extensions.dll": {},
+          "lib/net45/System.Net.Http.Primitives.dll": {}
         }
       },
       "Microsoft.OpenApi/1.2.3": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Microsoft.OpenApi.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/netstandard2.0/Microsoft.OpenApi.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/Microsoft.OpenApi.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/netstandard2.0/Microsoft.OpenApi.dll": {}
         }
       },
       "Newtonsoft.Json/13.0.3": {
         "type": "package",
         "compile": {
-          "lib/net6.0/Newtonsoft.Json.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/Newtonsoft.Json.dll": {}
         },
         "runtime": {
-          "lib/net6.0/Newtonsoft.Json.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/Newtonsoft.Json.dll": {}
         }
       },
       "NodaTime/3.1.11": {
@@ -392,14 +304,10 @@
           "System.Runtime.CompilerServices.Unsafe": "4.7.1"
         },
         "compile": {
-          "lib/net6.0/NodaTime.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net6.0/NodaTime.dll": {}
         },
         "runtime": {
-          "lib/net6.0/NodaTime.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net6.0/NodaTime.dll": {}
         }
       },
       "RestSharp/110.2.0": {
@@ -408,14 +316,10 @@
           "System.Text.Json": "7.0.2"
         },
         "compile": {
-          "lib/net6.0/RestSharp.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/RestSharp.dll": {}
         },
         "runtime": {
-          "lib/net6.0/RestSharp.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/RestSharp.dll": {}
         }
       },
       "Swashbuckle.AspNetCore/6.5.0": {
@@ -436,14 +340,10 @@
           "Microsoft.OpenApi": "1.2.3"
         },
         "compile": {
-          "lib/net6.0/Swashbuckle.AspNetCore.Swagger.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net6.0/Swashbuckle.AspNetCore.Swagger.dll": {}
         },
         "runtime": {
-          "lib/net6.0/Swashbuckle.AspNetCore.Swagger.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net6.0/Swashbuckle.AspNetCore.Swagger.dll": {}
         },
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
@@ -455,27 +355,19 @@
           "Swashbuckle.AspNetCore.Swagger": "6.5.0"
         },
         "compile": {
-          "lib/net6.0/Swashbuckle.AspNetCore.SwaggerGen.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net6.0/Swashbuckle.AspNetCore.SwaggerGen.dll": {}
         },
         "runtime": {
-          "lib/net6.0/Swashbuckle.AspNetCore.SwaggerGen.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net6.0/Swashbuckle.AspNetCore.SwaggerGen.dll": {}
         }
       },
       "Swashbuckle.AspNetCore.SwaggerUI/6.5.0": {
         "type": "package",
         "compile": {
-          "lib/net6.0/Swashbuckle.AspNetCore.SwaggerUI.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net6.0/Swashbuckle.AspNetCore.SwaggerUI.dll": {}
         },
         "runtime": {
-          "lib/net6.0/Swashbuckle.AspNetCore.SwaggerUI.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net6.0/Swashbuckle.AspNetCore.SwaggerUI.dll": {}
         },
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
@@ -484,14 +376,10 @@
       "System.CodeDom/7.0.0": {
         "type": "package",
         "compile": {
-          "lib/net6.0/System.CodeDom.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/System.CodeDom.dll": {}
         },
         "runtime": {
-          "lib/net6.0/System.CodeDom.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/System.CodeDom.dll": {}
         },
         "build": {
           "buildTransitive/net6.0/_._": {}
@@ -505,14 +393,10 @@
           "Newtonsoft.Json": "10.0.1"
         },
         "compile": {
-          "lib/netstandard2.0/System.IdentityModel.Tokens.Jwt.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/System.IdentityModel.Tokens.Jwt.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/System.IdentityModel.Tokens.Jwt.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/System.IdentityModel.Tokens.Jwt.dll": {}
         }
       },
       "System.Management/7.0.2": {
@@ -521,14 +405,10 @@
           "System.CodeDom": "7.0.0"
         },
         "compile": {
-          "lib/net6.0/System.Management.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/System.Management.dll": {}
         },
         "runtime": {
-          "lib/net6.0/System.Management.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/System.Management.dll": {}
         },
         "build": {
           "buildTransitive/net6.0/_._": {}
@@ -543,14 +423,10 @@
       "System.Runtime.CompilerServices.Unsafe/6.0.0": {
         "type": "package",
         "compile": {
-          "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll": {}
         },
         "runtime": {
-          "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll": {}
         },
         "build": {
           "buildTransitive/netcoreapp3.1/_._": {}
@@ -559,9 +435,7 @@
       "System.Security.Cryptography.Cng/4.5.0": {
         "type": "package",
         "compile": {
-          "ref/netcoreapp2.1/System.Security.Cryptography.Cng.dll": {
-            "related": ".xml"
-          }
+          "ref/netcoreapp2.1/System.Security.Cryptography.Cng.dll": {}
         },
         "runtime": {
           "lib/netcoreapp2.1/System.Security.Cryptography.Cng.dll": {}
@@ -579,14 +453,10 @@
           "System.Runtime.CompilerServices.Unsafe": "6.0.0"
         },
         "compile": {
-          "lib/net6.0/System.Text.Encodings.Web.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/System.Text.Encodings.Web.dll": {}
         },
         "runtime": {
-          "lib/net6.0/System.Text.Encodings.Web.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/System.Text.Encodings.Web.dll": {}
         },
         "build": {
           "buildTransitive/net6.0/_._": {}
@@ -605,14 +475,10 @@
           "System.Text.Encodings.Web": "7.0.0"
         },
         "compile": {
-          "lib/net6.0/System.Text.Json.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/System.Text.Json.dll": {}
         },
         "runtime": {
-          "lib/net6.0/System.Text.Json.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/System.Text.Json.dll": {}
         },
         "build": {
           "buildTransitive/net6.0/System.Text.Json.targets": {}
@@ -1955,24 +1821,26 @@
     ]
   },
   "packageFolders": {
-    "/Users/edrisym/.nuget/packages/": {}
+    "C:\\Users\\e.ghafouri\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi.csproj",
+      "projectUniqueName": "C:\\Users\\e.ghafouri\\Desktop\\FromGitHub\\Calendar\\CalendarApi\\CalendarApi\\Sample.GoogleCalendarApi.csproj",
       "projectName": "Sample.GoogleCalendarApi",
-      "projectPath": "/Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi.csproj",
-      "packagesPath": "/Users/edrisym/.nuget/packages/",
-      "outputPath": "/Users/edrisym/Desktop/Sample/Sample.GoogleCalendarApi/Sample.GoogleCalendarApi/obj/",
+      "projectPath": "C:\\Users\\e.ghafouri\\Desktop\\FromGitHub\\Calendar\\CalendarApi\\CalendarApi\\Sample.GoogleCalendarApi.csproj",
+      "packagesPath": "C:\\Users\\e.ghafouri\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\e.ghafouri\\Desktop\\FromGitHub\\Calendar\\CalendarApi\\CalendarApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/edrisym/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\e.ghafouri\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -1985,11 +1853,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -2039,8 +1902,7 @@
           "net47",
           "net471",
           "net472",
-          "net48",
-          "net481"
+          "net48"
         ],
         "assetTargetFallback": true,
         "warn": true,
@@ -2052,7 +1914,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.204/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   },
@@ -2061,7 +1923,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'Microsoft.Bcl 1.1.10' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "message": "Package 'Microsoft.Bcl 1.1.10' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
       "libraryId": "Microsoft.Bcl",
       "targetGraphs": [
         "net6.0"
@@ -2071,7 +1933,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'Microsoft.Net.Http 2.2.29' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "message": "Package 'Microsoft.Net.Http 2.2.29' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
       "libraryId": "Microsoft.Net.Http",
       "targetGraphs": [
         "net6.0"
