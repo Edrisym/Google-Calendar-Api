@@ -5,14 +5,14 @@ using Google.Apis.Auth.OAuth2.Responses;
 using Google.Apis.Calendar.v3;
 using Google.Apis.Calendar.v3.Data;
 using Google.Apis.Services;
-using Google.Apis.Util;
-using System.IO;
 using Newtonsoft.Json.Linq;
 using Sample.GoogleCalendarApi.Settings;
 using RestSharp;
 using Newtonsoft.Json;
 using Sample.GoogleCalendarApi.Common.Model;
 using Microsoft.Extensions.Options;
+using NodaTime.Extensions;
+using NodaTime;
 
 namespace Sample.GoogleCalendarApi.Services
 {
@@ -32,6 +32,8 @@ namespace Sample.GoogleCalendarApi.Services
 
         private Event Create(EventModel model)
         {
+            var timeZone = TimeZoneInfo.FindSystemTimeZoneById("Iran Standard Time");
+            var time = DateTimeZone.Utc;
             var eventAttendees = new List<EventAttendee>();
 
             foreach (var attendee in model.Attendees)
@@ -48,15 +50,18 @@ namespace Sample.GoogleCalendarApi.Services
             {
                 Summary = model.Summary,
                 Location = model.Location,
+                CreatedRaw = model.StartDateTime.ToString("yyyy-MM-ddThh:mm:ss.ffffffzzz"),
+                // CreatedDateTimeOffset = ,
+                // CreatedRaw = "2024-05-08T18:30:0003:30:00Z",
                 Description = model.Description,
                 Start = new EventDateTime()
                 {
-                    DateTime = model.StartDateTime,
-                    TimeZone = model.TimeZone,
+                    DateTimeDateTimeOffset = model.StartDateTime,
+                    TimeZone = model.TimeZone
                 },
                 End = new EventDateTime()
                 {
-                    DateTime = model.EndDateTime,
+                    DateTimeDateTimeOffset = model.EndDateTime,
                     TimeZone = model.TimeZone,
                 },
                 Attendees = eventAttendees

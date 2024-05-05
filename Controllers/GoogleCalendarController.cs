@@ -1,6 +1,4 @@
-﻿using System.Formats.Asn1;
-using Google.Apis.Calendar.v3.Data;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Sample.GoogleCalendarApi.Common.Model;
 using Sample.GoogleCalendarApi.Services;
 
@@ -30,7 +28,7 @@ namespace Sample.GoogleCalendarApi.Controllers
         [HttpGet("Revoke")]
         public async Task<IActionResult> Revoke()
         {
-            var statusCode =  _service.RevokeToken();
+            var statusCode = _service.RevokeToken();
             if (statusCode)
                 return Ok("Revoked successfully");
             else
@@ -38,4 +36,19 @@ namespace Sample.GoogleCalendarApi.Controllers
         }
     }
 }
-{ "Description":"<p>this is the description</p>\n","summary":"this is the title","Location":"edris address","startDateTime":"2024-05-06T20:20:00","endDateTime":"2024-05-06T21:21:00","Attendees":[{ "AttendeesEmail":"hafkhat.76@gmail.com","AttendeesName":"ادریس معاون"}]}
+
+
+
+// {
+//   "Description": "<p>this is the description</p>\n",
+//   "summary": "this is the title",
+//   "Location": "edris address",
+//   "startDateTime": "2024-05-06T20:20:00",
+//   "endDateTime": "2024-05-06T21:21:00",
+//   "Attendees": [
+//     {
+//       "AttendeesEmail": "hafkhat.76@gmail.com",
+//       "AttendeesName": "ادریس معاون"
+//     }
+//   ]
+// }

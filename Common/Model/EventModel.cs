@@ -9,7 +9,7 @@ public class EventModel
     public string Description { get; set; }
     public DateTime EndDateTime { get; set; }
     public DateTime StartDateTime { get; set; }
-    public string TimeZone { get; set; } = "Asia/Tehran";
+    public string TimeZone { get; } = "Asia/Tehran";
     public List<Attendee> Attendees { get; set; }
 }
 
