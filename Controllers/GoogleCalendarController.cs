@@ -52,3 +52,7 @@ namespace Sample.GoogleCalendarApi.Controllers
 //     }
 //   ]
 // }
+
+
+
+//https://medium.com/iceapple-tech-talks/integration-with-google-calendar-api-using-service-account-1471e6e102c8#:~:text=Enable%20the%20Google%20Calendar%20API.&text=Create%20Credentials%20for%20Service%20account.&text=Add%20%E2%80%9CService%20Account%20Token%20Creator,and%20create%20the%20service%20account.&text=Share%20the%20calendar%20with%20service%20account.

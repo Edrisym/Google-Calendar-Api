@@ -33,9 +33,8 @@ namespace Sample.GoogleCalendarApi.Services
         private Event Create(EventModel model)
         {
             var timeZone = TimeZoneInfo.FindSystemTimeZoneById("Iran Standard Time");
-            var time = DateTimeZone.Utc;
-            var eventAttendees = new List<EventAttendee>();
 
+            var eventAttendees = new List<EventAttendee>();
             foreach (var attendee in model.Attendees)
             {
                 var eventAttendee = new EventAttendee
@@ -51,8 +50,7 @@ namespace Sample.GoogleCalendarApi.Services
                 Summary = model.Summary,
                 Location = model.Location,
                 CreatedRaw = model.StartDateTime.ToString("yyyy-MM-ddThh:mm:ss.ffffffzzz"),
-                // CreatedDateTimeOffset = ,
-                // CreatedRaw = "2024-05-08T18:30:0003:30:00Z",
+                CreatedDateTimeOffset = DateTimeOffset.Now,
                 Description = model.Description,
                 Start = new EventDateTime()
                 {
