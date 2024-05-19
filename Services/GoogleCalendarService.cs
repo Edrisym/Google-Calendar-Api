@@ -1,5 +1,4 @@
-﻿using CalendarApi.Common;
-using Google.Apis.Auth.OAuth2;
+﻿using Google.Apis.Auth.OAuth2;
 using Google.Apis.Auth.OAuth2.Flows;
 using Google.Apis.Auth.OAuth2.Responses;
 using Google.Apis.Calendar.v3;
@@ -11,8 +10,6 @@ using RestSharp;
 using Newtonsoft.Json;
 using Sample.GoogleCalendarApi.Common.Model;
 using Microsoft.Extensions.Options;
-using NodaTime.Extensions;
-using NodaTime;
 
 namespace Sample.GoogleCalendarApi.Services
 {
