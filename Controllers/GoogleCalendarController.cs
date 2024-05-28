@@ -16,17 +16,25 @@ namespace Sample.GoogleCalendarApi.Controllers
         }
 
         [HttpPost("CreateEvent")]
-        public async Task<IActionResult> CreateEvent(EventModel model)
+        public IActionResult CreateEvent(EventModel model)
         {
-            var createdEvent = await _service.CreateEvent(model);
-            if (createdEvent != null)
-                return Ok("Event calendar was successfully Created!");
-            else
-                return BadRequest("Creating event calendar failed!");
+            try
+            {
+                var createdEvent = _service.CreateEvent(model);
+                if (createdEvent != null)
+                    return Ok("Event calendar was successfully Created!");
+                else
+                    return BadRequest("Creating event calendar failed!");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+            
         }
 
         [HttpGet("Revoke")]
-        public async Task<IActionResult> Revoke()
+        public IActionResult Revoke()
         {
             var statusCode = _service.RevokeToken();
             if (statusCode)

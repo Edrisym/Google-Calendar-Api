@@ -18,19 +18,19 @@ namespace Sample.GoogleCalendarApi.Controllers
         }
         [HttpGet]
         [Route("oauth/callback")]
-        public async Task<IActionResult> Callback(string code, string? error, string state)
+        public IActionResult Callback(string code, string? error, string state)
         {
             if (string.IsNullOrWhiteSpace(error))
                 if (_service.GetToken(code))
                     return Ok("Access token was generated successfully!");
                 else
                     return BadRequest("Access token failed!!");
-            return Ok("Callbacl method Failed");
+            return Ok("Callback method failed");
         }
 
         [HttpPost]
         [Route("/googlecalendar/generaterefreshtoken")]
-        public async Task<IActionResult> GenerateRefreshToken()
+        public IActionResult GenerateRefreshToken()
         {
 
             var status = _service.RefreshAccessToken(/*_settings.ClientId, _settings.ClientSecret, _ScopeToken*/);

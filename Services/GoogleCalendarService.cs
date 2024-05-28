@@ -64,7 +64,7 @@ namespace Sample.GoogleCalendarApi.Services
             return createdEvent;
         }
 
-        public async Task<Event> CreateEvent(EventModel model)
+        public Event CreateEvent(EventModel model)
         {
             var newEvent = Create(model);
 
@@ -182,10 +182,7 @@ namespace Sample.GoogleCalendarApi.Services
 
         public bool RevokeToken()
         {
-
-            var token = JObject.Parse(File.ReadAllText(_TokenPath));
-
-            // var restClient = new RestClient();
+            var token = JObject.Parse(File.ReadAllText(Path.GetFullPath(_TokenPath)));
             var request = new RestRequest();
 
             request.AddQueryParameter("token", token["access_token"].ToString());
@@ -197,9 +194,7 @@ namespace Sample.GoogleCalendarApi.Services
             {
                 var newtoken = JObject.Parse(System.IO.File.ReadAllText(_TokenPath));
                 Console.WriteLine("successfully revoked the token = {0}", newtoken);
-                // return RedirectToAction("Index", "Home", new { status = "success" });
             }
-
             return response.IsSuccessStatusCode;
         }
 
@@ -229,10 +224,10 @@ namespace Sample.GoogleCalendarApi.Services
             if (response.IsSuccessful == true)
             {
                 var newTokens = JObject.Parse(response.Content);
-                if (newTokens.HasValues)
-                {
-                    UpdateAppSettingJson(newTokens["refresh_token"].ToString());
-                }
+                //if (newTokens.HasValues)
+                //{
+                //    UpdateAppSettingJson(newTokens["refresh_token"].ToString());
+                //}
 
                 Console.WriteLine("StatusCode is OK!");
                 Console.WriteLine("request was successfully sent!");

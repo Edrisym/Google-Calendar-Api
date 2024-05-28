@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Options;
+using Sample.GoogleCalendarApi.Common.Model;
 using Sample.GoogleCalendarApi.Services;
 using Sample.GoogleCalendarApi.Settings;
 
@@ -31,11 +32,16 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 
-
+app.UseCors("AllowAll");
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+app.MapPost(@"test/route", (EventModel model, IGoogleCalendarService _service) =>
+{
+    var createdEvent = _service.CreateEvent(model);
+    return createdEvent;
+});
 app.MapControllers();
 
 app.Run();
