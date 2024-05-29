@@ -124,3 +124,4 @@ C:\Users\e.ghafouri\Desktop\FromGitHub\Calendar\CalendarApi\CalendarApi\obj\Debu
 C:\Users\e.ghafouri\Desktop\FromGitHub\Calendar\CalendarApi\CalendarApi\obj\Debug\net6.0\ref\Sample.GoogleCalendarApi.dll
 C:\Users\e.ghafouri\Desktop\FromGitHub\Calendar\CalendarApi\CalendarApi\obj\Debug\net6.0\Sample.GoogleCalendarApi.pdb
 C:\Users\e.ghafouri\Desktop\FromGitHub\Calendar\CalendarApi\CalendarApi\obj\Debug\net6.0\Sample.GoogleCalendarApi.genruntimeconfig.cache
+C:\Users\e.ghafouri\Desktop\FromGitHub\Calendar\CalendarApi\CalendarApi\obj\Debug\net6.0\Sample.GoogleCalendarApi.csproj.AssemblyReference.cache

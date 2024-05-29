@@ -18,19 +18,12 @@ namespace Sample.GoogleCalendarApi.Controllers
         [HttpPost("CreateEvent")]
         public IActionResult CreateEvent([FromBody] EventModel model)
         {
-            try
-            {
-                var createdEvent = _service.CreateEvent(model);
-                if (createdEvent != null)
-                    return Ok("Event calendar was successfully Created!");
-                else
-                    return BadRequest("Creating event calendar failed!");
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex);
-            }
-            
+
+            var createdEvent = _service.CreateEvent(model);
+            if (createdEvent != null)
+                return Ok("Event calendar was successfully Created!");
+            else
+                return BadRequest("Creating event calendar failed!");
         }
 
         [HttpGet("Revoke")]

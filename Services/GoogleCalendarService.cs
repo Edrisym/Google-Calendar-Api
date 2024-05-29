@@ -27,10 +27,8 @@ namespace Sample.GoogleCalendarApi.Services
             _oAuthService = oAuthService;
         }
 
-        private Event Create(EventModel model)
+        private static Event Create(EventModel model)
         {
-            var timeZone = TimeZoneInfo.FindSystemTimeZoneById("Iran Standard Time");
-
             var eventAttendees = new List<EventAttendee>();
             foreach (var attendee in model.Attendees)
             {
@@ -44,9 +42,34 @@ namespace Sample.GoogleCalendarApi.Services
 
             var createdEvent = new Event()
             {
+                //ConferenceData = new ConferenceData
+                //{
+                //    ConferenceSolution = new ConferenceSolution()
+                //    {
+                //        Key = new ConferenceSolutionKey()
+                //        {
+                //            Type = "hangoutsMeet"
+                //        }
+                //    },
+
+                //    CreateRequest = new CreateConferenceRequest()
+                //    {
+                //        RequestId = Guid.NewGuid().ToString(),
+                //        ConferenceSolutionKey = new ConferenceSolutionKey()
+                //        {
+                //            Type = "hangoutsMeet"
+                //        },
+                //    },
+
+                //    EntryPoints = new List<EntryPoint>()
+                //    {
+                //        new EntryPoint { EntryPointType = "video"  }
+                //    }
+                //},
+
+                Description = $"پیوستن به جلسه آنلاین: {model.OnlineMeetingLink}\n\n {model.Description}",
                 Summary = model.Summary,
                 Location = model.Location,
-                Description = model.Description,
                 Start = new EventDateTime()
                 {
                     DateTimeDateTimeOffset = model.StartDateTime,
@@ -59,6 +82,7 @@ namespace Sample.GoogleCalendarApi.Services
                 },
                 Attendees = eventAttendees
             };
+
             return createdEvent;
         }
 
@@ -84,21 +108,25 @@ namespace Sample.GoogleCalendarApi.Services
                     _settings.Value.User,
                     token);
 
-                // define services
                 var services = new CalendarService(new BaseClientService.Initializer()
                 {
                     HttpClientInitializer = credential,
                     ApplicationName = _settings.Value.ApplicationName,
                 });
+
                 EventsResource.InsertRequest eventRequest = services.Events.Insert(newEvent, _settings.Value.CalendarId);
+
                 eventRequest.SendNotifications = true;
+                eventRequest.ConferenceDataVersion = 1;
+
                 Event createdEvent = eventRequest.Execute();
                 Console.WriteLine("Event created: {0}", createdEvent.HtmlLink);
+
                 return createdEvent;
             }
-            catch (Exception ex )
+            catch (Exception ex)
             {
-                throw new Exception("Create Service Account Calendar Failed", ex);
+                throw new Exception("Create service account calendar failed !! ", ex);
             }
         }
 
