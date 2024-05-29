@@ -13,7 +13,9 @@
           "Google.Apis.Calendar.v3": "1.67.0.3374",
           "Google.Apis.Drive.v2": "1.67.0.3296",
           "Microsoft.AspNetCore.Authorization": "8.0.4",
+          "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "6.0.30",
           "Microsoft.Net.Http": "2.2.29",
+          "Newtonsoft.Json": "13.0.3",
           "NodaTime": "3.1.11",
           "RestSharp": "110.2.0",
           "Swashbuckle.AspNetCore": "6.5.0"
@@ -118,11 +120,36 @@
           }
         }
       },
+      "Microsoft.AspNetCore.JsonPatch/6.0.30": {
+        "dependencies": {
+          "Microsoft.CSharp": "4.7.0",
+          "Newtonsoft.Json": "13.0.3"
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.JsonPatch.dll": {
+            "assemblyVersion": "6.0.30.0",
+            "fileVersion": "6.0.3024.21619"
+          }
+        }
+      },
       "Microsoft.AspNetCore.Metadata/8.0.4": {
         "runtime": {
           "lib/netstandard2.0/Microsoft.AspNetCore.Metadata.dll": {
             "assemblyVersion": "8.0.0.0",
             "fileVersion": "8.0.424.17014"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Mvc.NewtonsoftJson/6.0.30": {
+        "dependencies": {
+          "Microsoft.AspNetCore.JsonPatch": "6.0.30",
+          "Newtonsoft.Json": "13.0.3",
+          "Newtonsoft.Json.Bson": "1.0.2"
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll": {
+            "assemblyVersion": "6.0.30.0",
+            "fileVersion": "6.0.3024.21619"
           }
         }
       },
@@ -132,6 +159,7 @@
         }
       },
       "Microsoft.Bcl.Build/1.0.14": {},
+      "Microsoft.CSharp/4.7.0": {},
       "Microsoft.Extensions.ApiDescription.Server/6.0.5": {},
       "Microsoft.Extensions.DependencyInjection.Abstractions/8.0.1": {
         "runtime": {
@@ -262,6 +290,17 @@
           "lib/net6.0/Newtonsoft.Json.dll": {
             "assemblyVersion": "13.0.0.0",
             "fileVersion": "13.0.3.27908"
+          }
+        }
+      },
+      "Newtonsoft.Json.Bson/1.0.2": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.Bson.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.2.22727"
           }
         }
       },
@@ -462,12 +501,26 @@
       "path": "microsoft.aspnetcore.authorization/8.0.4",
       "hashPath": "microsoft.aspnetcore.authorization.8.0.4.nupkg.sha512"
     },
+    "Microsoft.AspNetCore.JsonPatch/6.0.30": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-cntd2pwQKG3r5t4mjwlaeQ9NtLdakdvvjuCIjWLfhIMrN36d7VlsL9CN31Vn/Gfcj5xypoBIj+PiL2qNNrdfKQ==",
+      "path": "microsoft.aspnetcore.jsonpatch/6.0.30",
+      "hashPath": "microsoft.aspnetcore.jsonpatch.6.0.30.nupkg.sha512"
+    },
     "Microsoft.AspNetCore.Metadata/8.0.4": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-TG3JhI7dkDCIoxZ3TL/5yptLYLg56w1f4jE8GSYnZXSso1xY5JKKCxObK+xKQJU5kZir30+QUGX1WpbC1kDcow==",
       "path": "microsoft.aspnetcore.metadata/8.0.4",
       "hashPath": "microsoft.aspnetcore.metadata.8.0.4.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Mvc.NewtonsoftJson/6.0.30": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-M8e2HlWvaTKbIVPyWkOMD63LK1qO+Kt2cLbW64sGORLRpWljqwJGXpRemrfkegliaOyUFi+O5bBbxRagbcdDFg==",
+      "path": "microsoft.aspnetcore.mvc.newtonsoftjson/6.0.30",
+      "hashPath": "microsoft.aspnetcore.mvc.newtonsoftjson.6.0.30.nupkg.sha512"
     },
     "Microsoft.Bcl/1.1.10": {
       "type": "package",
@@ -482,6 +535,13 @@
       "sha512": "sha512-cDLKSvNvRa519hplsbSoYqO69TjdDIhfjtKUM0g20/nVROoWsGav9KCI9HtnGjLmdV1+TcUUDhbotcllibjPEA==",
       "path": "microsoft.bcl.build/1.0.14",
       "hashPath": "microsoft.bcl.build.1.0.14.nupkg.sha512"
+    },
+    "Microsoft.CSharp/4.7.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-pTj+D3uJWyN3My70i2Hqo+OXixq3Os2D1nJ2x92FFo6sk8fYS1m1WLNTs0Dc1uPaViH0YvEEwvzddQ7y4rhXmA==",
+      "path": "microsoft.csharp/4.7.0",
+      "hashPath": "microsoft.csharp.4.7.0.nupkg.sha512"
     },
     "Microsoft.Extensions.ApiDescription.Server/6.0.5": {
       "type": "package",
@@ -573,6 +633,13 @@
       "sha512": "sha512-HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
       "path": "newtonsoft.json/13.0.3",
       "hashPath": "newtonsoft.json.13.0.3.nupkg.sha512"
+    },
+    "Newtonsoft.Json.Bson/1.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-QYFyxhaABwmq3p/21VrZNYvCg3DaEoN/wUuw5nmfAf0X3HLjgupwhkEWdgfb9nvGAUIv3osmZoD3kKl4jxEmYQ==",
+      "path": "newtonsoft.json.bson/1.0.2",
+      "hashPath": "newtonsoft.json.bson.1.0.2.nupkg.sha512"
     },
     "NodaTime/3.1.11": {
       "type": "package",

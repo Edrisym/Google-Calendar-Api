@@ -1,4 +1,3 @@
-using Microsoft.Extensions.Options;
 using Sample.GoogleCalendarApi.Common.Model;
 using Sample.GoogleCalendarApi.Services;
 using Sample.GoogleCalendarApi.Settings;
@@ -11,8 +10,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.Configure<GoogleCalendarSettings>(builder.Configuration.GetSection(nameof(GoogleCalendarSettings)));
 //builder.Services.AddScoped<IGoogleCalendarSettings, GoogleCalendarSettings>();
-builder.Services.AddScoped<IGoogleCalendarService, GoogleCalendarService>();
-builder.Services.AddScoped<IOAuthService, OAuthService>();
+builder.Services.AddTransient<IGoogleCalendarService, GoogleCalendarService>();
+builder.Services.AddTransient<IOAuthService, OAuthService>();
 
 builder.Services.AddCors(options =>
 {
@@ -23,7 +22,8 @@ builder.Services.AddCors(options =>
                    .AllowAnyMethod()
                    .AllowAnyHeader();
         });
-});
+}); 
+builder.Services.AddControllers().AddNewtonsoftJson();
 
 var app = builder.Build();
 

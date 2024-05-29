@@ -15,7 +15,7 @@ namespace Sample.GoogleCalendarApi.Services
 {
     public class GoogleCalendarService : IGoogleCalendarService
     {
-        private readonly GoogleCalendarSettings _settings;
+        private readonly IOptionsSnapshot<GoogleCalendarSettings> _settings;
         private readonly IOAuthService _oAuthService;
         private const string _ScopeToken = "https://oauth2.googleapis.com/token";
         private const string _TokenPath = "OAuthFiles/Token.json";
@@ -23,7 +23,7 @@ namespace Sample.GoogleCalendarApi.Services
 
         public GoogleCalendarService(IOptionsSnapshot<GoogleCalendarSettings> settings, IOAuthService oAuthService)
         {
-            _settings = settings.Value;
+            _settings = settings;
             _oAuthService = oAuthService;
         }
 
@@ -46,8 +46,6 @@ namespace Sample.GoogleCalendarApi.Services
             {
                 Summary = model.Summary,
                 Location = model.Location,
-                CreatedRaw = model.StartDateTime.ToString("yyyy-MM-ddThh:mm:ss.ffffffzzz"),
-                CreatedDateTimeOffset = DateTimeOffset.Now,
                 Description = model.Description,
                 Start = new EventDateTime()
                 {
@@ -66,40 +64,39 @@ namespace Sample.GoogleCalendarApi.Services
 
         public Event CreateEvent(EventModel model)
         {
-            var newEvent = Create(model);
-
-            var secrets = new ClientSecrets()
-            {
-                ClientId = _settings.ClientId,
-                ClientSecret = _settings.ClientSecret
-            };
-
-            var token = new TokenResponse { RefreshToken = _settings.RefreshToken };
-
-            var credential = new UserCredential(new GoogleAuthorizationCodeFlow(
-              new GoogleAuthorizationCodeFlow.Initializer
-              {
-                  ClientSecrets = secrets
-              }),
-                _settings.User,
-                token);
-
-            // define services
-            var services = new CalendarService(new BaseClientService.Initializer()
-            {
-                HttpClientInitializer = credential,
-                ApplicationName = _settings.ApplicationName,
-            });
-
-            EventsResource.InsertRequest eventRequest = services.Events.Insert(newEvent, _settings.CalendarId);
             try
             {
+                var newEvent = Create(model);
+
+                var secrets = new ClientSecrets()
+                {
+                    ClientId = _settings.Value.ClientId,
+                    ClientSecret = _settings.Value.ClientSecret
+                };
+
+                var token = new TokenResponse { RefreshToken = _settings.Value.RefreshToken };
+
+                var credential = new UserCredential(new GoogleAuthorizationCodeFlow(
+                  new GoogleAuthorizationCodeFlow.Initializer
+                  {
+                      ClientSecrets = secrets
+                  }),
+                    _settings.Value.User,
+                    token);
+
+                // define services
+                var services = new CalendarService(new BaseClientService.Initializer()
+                {
+                    HttpClientInitializer = credential,
+                    ApplicationName = _settings.Value.ApplicationName,
+                });
+                EventsResource.InsertRequest eventRequest = services.Events.Insert(newEvent, _settings.Value.CalendarId);
                 eventRequest.SendNotifications = true;
                 Event createdEvent = eventRequest.Execute();
                 Console.WriteLine("Event created: {0}", createdEvent.HtmlLink);
                 return createdEvent;
             }
-            catch (Exception ex)
+            catch (Exception ex )
             {
                 throw new Exception("Create Service Account Calendar Failed", ex);
             }
@@ -168,7 +165,7 @@ namespace Sample.GoogleCalendarApi.Services
                 var state = "successful";
                 var include_granted_scopes = "true";
                 // var prompt = "select_account";
-                var login_hint = _settings.LoginHint;
+                var login_hint = _settings.Value.LoginHint;
                 string redirect_uri_encode = CalendarApi.Common.Method.UrlEncodeForGoogle(redirectURL);
                 var mainURL = string.Format(scopeURL1, redirect_uri_encode, state, response_type, client_id, scope, access_type, include_granted_scopes, login_hint);
 

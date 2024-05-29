@@ -16,7 +16,7 @@ namespace Sample.GoogleCalendarApi.Controllers
         }
 
         [HttpPost("CreateEvent")]
-        public IActionResult CreateEvent(EventModel model)
+        public IActionResult CreateEvent([FromBody] EventModel model)
         {
             try
             {
