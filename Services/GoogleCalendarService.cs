@@ -102,8 +102,6 @@ namespace Sample.GoogleCalendarApi.Services
             }
         }
 
-
-
         public bool RefreshAccessToken()
         {
             var credentialFile = _oAuthService.CredentialsFile();
@@ -133,7 +131,6 @@ namespace Sample.GoogleCalendarApi.Services
 
         public void UpdateAppSettingJson(string refreshToken)
         {
-            // Read the JSON file
             string jsonFilePath = "appsettings.Development.json";
             string jsonString = File.ReadAllText(jsonFilePath);
 
@@ -151,15 +148,13 @@ namespace Sample.GoogleCalendarApi.Services
 
         public string GetAuthCode()
         {
-            // var credentialsFile = "/Users/edrisym/Desktop/webApp/File/Credentials.json";
             var credentials = JObject.Parse(System.IO.File.ReadAllText(_CredentialsPath));
-            //https://accounts.google.com/o/oauth2/auth?client_id={client_id}&response_type=token&redirect_uri={redirect_uri}&scope={scope}
             try
             {
                 string scopeURL1 = "https://accounts.google.com/o/oauth2/auth?redirect_uri={0}&state={1}&response_type={2}&client_id={3}&scope={4}&access_type={5}&include_granted_scopes={6}&login_hint={7}";
                 var redirectURL = "https://localhost:7086/oauth/callback";
                 string response_type = "code";
-                var client_id = credentials["client_id"];
+                var client_id = _settings.Value.ClientId;
                 string scope = "https://www.googleapis.com/auth/calendar+https://www.googleapis.com/auth/calendar.events";
                 string access_type = "offline";
                 var state = "successful";
@@ -198,8 +193,6 @@ namespace Sample.GoogleCalendarApi.Services
         public bool GetToken(string code)
         {
             var credentials = JObject.Parse(File.ReadAllText(_CredentialsPath));
-
-            // string tokenFile = "/Users/edrisym/Desktop/webApp/File/token.json";
 
             //TODO
             var restClient = new RestClient();

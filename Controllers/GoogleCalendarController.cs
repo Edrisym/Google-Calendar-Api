@@ -44,23 +44,3 @@ namespace Sample.GoogleCalendarApi.Controllers
         }
     }
 }
-
-
-
-//{
-//    "Description": "<p>this is the description</p>\n",
-//   "summary": "this is the title",
-//   "Location": "edris address",
-//   "startDateTime": "2024-05-06T20:20:00",
-//   "endDateTime": "2024-05-06T21:21:00",
-//   "Attendees": [
-//     {
-//        "AttendeesEmail": "hafkhat.76@gmail.com",
-//       "AttendeesName": "ادریس معاون"
-//     }
-//   ]
-// }
-
-
-
-//https://medium.com/iceapple-tech-talks/integration-with-google-calendar-api-using-service-account-1471e6e102c8#:~:text=Enable%20the%20Google%20Calendar%20API.&text=Create%20Credentials%20for%20Service%20account.&text=Add%20%E2%80%9CService%20Account%20Token%20Creator,and%20create%20the%20service%20account.&text=Share%20the%20calendar%20with%20service%20account.
