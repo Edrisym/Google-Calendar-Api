@@ -7,9 +7,9 @@ public class Method
 {
     public static string UrlEncodeForGoogle(string url)
     {
-        string unreservedChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-.~";
-        StringBuilder result = new StringBuilder();
-        foreach (char symbol in url)
+        var unreservedChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-.~";
+        var result = new StringBuilder();
+        foreach (var symbol in url)
         {
             if (unreservedChars.IndexOf(symbol) != -1)
             {

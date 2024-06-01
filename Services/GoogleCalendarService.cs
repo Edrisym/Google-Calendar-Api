@@ -1,9 +1,4 @@
-﻿using Google.Apis.Auth.OAuth2;
-using Google.Apis.Auth.OAuth2.Flows;
-using Google.Apis.Auth.OAuth2.Responses;
-using Google.Apis.Calendar.v3;
-using Google.Apis.Calendar.v3.Data;
-using Google.Apis.Services;
+﻿using Google.Apis.Calendar.v3.Data;
 using Newtonsoft.Json.Linq;
 using Sample.GoogleCalendarApi.Settings;
 using RestSharp;
@@ -42,31 +37,7 @@ namespace Sample.GoogleCalendarApi.Services
 
             var createdEvent = new Event()
             {
-                //ConferenceData = new ConferenceData
-                //{
-                //    ConferenceSolution = new ConferenceSolution()
-                //    {
-                //        Key = new ConferenceSolutionKey()
-                //        {
-                //            Type = "hangoutsMeet"
-                //        }
-                //    },
-
-                //    CreateRequest = new CreateConferenceRequest()
-                //    {
-                //        RequestId = Guid.NewGuid().ToString(),
-                //        ConferenceSolutionKey = new ConferenceSolutionKey()
-                //        {
-                //            Type = "hangoutsMeet"
-                //        },
-                //    },
-
-                //    EntryPoints = new List<EntryPoint>()
-                //    {
-                //        new EntryPoint { EntryPointType = "video"  }
-                //    }
-                //},
-
+                ColorId = "11",
                 Description = $"پیوستن به جلسه آنلاین: {model.OnlineMeetingLink}\n\n {model.Description}",
                 Summary = model.Summary,
                 Location = model.Location,
@@ -91,36 +62,16 @@ namespace Sample.GoogleCalendarApi.Services
             try
             {
                 var newEvent = Create(model);
+                var service = _oAuthService.GetCalendarService(_settings);
 
-                var secrets = new ClientSecrets()
-                {
-                    ClientId = _settings.Value.ClientId,
-                    ClientSecret = _settings.Value.ClientSecret
-                };
-
-                var token = new TokenResponse { RefreshToken = _settings.Value.RefreshToken };
-
-                var credential = new UserCredential(new GoogleAuthorizationCodeFlow(
-                  new GoogleAuthorizationCodeFlow.Initializer
-                  {
-                      ClientSecrets = secrets
-                  }),
-                    _settings.Value.User,
-                    token);
-
-                var services = new CalendarService(new BaseClientService.Initializer()
-                {
-                    HttpClientInitializer = credential,
-                    ApplicationName = _settings.Value.ApplicationName,
-                });
-
-                EventsResource.InsertRequest eventRequest = services.Events.Insert(newEvent, _settings.Value.CalendarId);
+                var eventRequest = service.Events.Insert(newEvent, _settings.Value.CalendarId);
 
                 eventRequest.SendNotifications = true;
                 eventRequest.ConferenceDataVersion = 1;
 
-                Event createdEvent = eventRequest.Execute();
-                Console.WriteLine("Event created: {0}", createdEvent.HtmlLink);
+                var createdEvent = eventRequest.Execute();
+                // createdEvent.GuestsCanModify = false;
+                Console.WriteLine($"Event created: {createdEvent.HtmlLink}");
 
                 return createdEvent;
             }
@@ -163,7 +114,7 @@ namespace Sample.GoogleCalendarApi.Services
             var restClient = new RestClient(_ScopeToken);
 
             var response = restClient.ExecutePost(request);
-            if (response.IsSuccessStatusCode == true)
+            if (response.IsSuccessStatusCode)
             {
                 var newTokens = JObject.Parse(response.Content);
                 newTokens["refresh_token"] = tokenFile["refresh_token"].ToString();
@@ -172,6 +123,7 @@ namespace Sample.GoogleCalendarApi.Services
 
                 File.WriteAllText(_TokenPath, newTokens.ToString());
             }
+
             return response.IsSuccessStatusCode;
         }
 
@@ -197,18 +149,21 @@ namespace Sample.GoogleCalendarApi.Services
             var credentials = JObject.Parse(System.IO.File.ReadAllText(_CredentialsPath));
             try
             {
-                string scopeURL1 = "https://accounts.google.com/o/oauth2/auth?redirect_uri={0}&state={1}&response_type={2}&client_id={3}&scope={4}&access_type={5}&include_granted_scopes={6}&login_hint={7}";
+                string scopeURL1 =
+                    "https://accounts.google.com/o/oauth2/auth?redirect_uri={0}&state={1}&response_type={2}&client_id={3}&scope={4}&access_type={5}&include_granted_scopes={6}&login_hint={7}";
                 var redirectURL = "https://localhost:7086/oauth/callback";
                 string response_type = "code";
                 var client_id = _settings.Value.ClientId;
-                string scope = "https://www.googleapis.com/auth/calendar+https://www.googleapis.com/auth/calendar.events";
+                string scope =
+                    "https://www.googleapis.com/auth/calendar+https://www.googleapis.com/auth/calendar.events";
                 string access_type = "offline";
                 var state = "successful";
                 var include_granted_scopes = "true";
                 // var prompt = "select_account";
                 var login_hint = _settings.Value.LoginHint;
                 string redirect_uri_encode = CalendarApi.Common.Method.UrlEncodeForGoogle(redirectURL);
-                var mainURL = string.Format(scopeURL1, redirect_uri_encode, state, response_type, client_id, scope, access_type, include_granted_scopes, login_hint);
+                var mainURL = string.Format(scopeURL1, redirect_uri_encode, state, response_type, client_id, scope,
+                    access_type, include_granted_scopes, login_hint);
 
                 return mainURL;
             }
@@ -233,6 +188,7 @@ namespace Sample.GoogleCalendarApi.Services
                 var newtoken = JObject.Parse(System.IO.File.ReadAllText(_TokenPath));
                 Console.WriteLine("successfully revoked the token = {0}", newtoken);
             }
+
             return response.IsSuccessStatusCode;
         }
 
@@ -273,5 +229,17 @@ namespace Sample.GoogleCalendarApi.Services
             return response.IsSuccessful;
         }
 
+        public void GetColor()
+        {
+            var service = _oAuthService.GetCalendarService(_settings);
+            var colorRequest = service.Colors.Get();
+            var colors = colorRequest.Execute();
+
+            foreach (var color in colors.Event__)
+            {
+                Console.WriteLine(
+                    $"ColorId: {color.Key}, Background: {color.Value.Background}, Foreground: {color.Value.Foreground}");
+            }
+        }
     }
 }
