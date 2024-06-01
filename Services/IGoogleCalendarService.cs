@@ -1,13 +1,13 @@
-﻿using System.Diagnostics.Eventing.Reader;
+﻿
 using Google.Apis.Calendar.v3.Data;
-using Newtonsoft.Json.Linq;
 using Sample.GoogleCalendarApi.Common.Model;
 
 namespace Sample.GoogleCalendarApi.Services
 {
     public interface IGoogleCalendarService
     {
-        Event CreateEvent(EventModel model);
+        Event CreateEvent(EventModel model); 
+        Event UpdateEvent(string eventId);
         string GetAuthCode();
         bool RevokeToken();
         bool RefreshAccessToken(/*string clientId, string clientSecret, string scopes*/);

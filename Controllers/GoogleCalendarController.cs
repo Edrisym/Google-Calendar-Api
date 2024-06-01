@@ -18,12 +18,11 @@ namespace Sample.GoogleCalendarApi.Controllers
         [HttpPost("CreateEvent")]
         public IActionResult CreateEvent([FromBody] EventModel model)
         {
-
             var createdEvent = _service.CreateEvent(model);
-            if (createdEvent != null)
-                return Ok("Event calendar was successfully Created!");
-            else
-                return BadRequest("Creating event calendar failed!");
+            var eventId = createdEvent.HtmlLink;
+            if (eventId != null)
+                return Ok($"Creating event calendar was successfully created : {eventId}");
+            return BadRequest("Creating event calendar failed!");
         }
 
         [HttpGet("Revoke")]
@@ -31,9 +30,18 @@ namespace Sample.GoogleCalendarApi.Controllers
         {
             var statusCode = _service.RevokeToken();
             if (statusCode)
-                return Ok("Revoked successfully");
+                return Ok("Revoking was successfully created");
             else
-                return BadRequest("Revoking FAILED!");
+                return BadRequest("Revoking failed!");
+        }
+
+        [HttpPut("UpdateEvent")]
+        public IActionResult UpdateEvent([FromBody] string eventId)
+        {
+           var createdEvent = _service.UpdateEvent(eventId);
+              if (createdEvent.Id != null)
+                 return Ok($"Creating event calendar was successfully created : {eventId}");
+              return BadRequest("Creating event calendar failed!");
         }
     }
 }

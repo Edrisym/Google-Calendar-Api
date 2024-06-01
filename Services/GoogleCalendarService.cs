@@ -126,7 +126,25 @@ namespace Sample.GoogleCalendarApi.Services
             }
             catch (Exception ex)
             {
-                throw new Exception("Create service account calendar failed !! ", ex);
+                throw new Exception($"Create service account calendar failed !! {ex}");
+            }
+        }
+
+        public Event UpdateEvent(string eventId)
+        {
+            try
+            {
+                var service = _oAuthService.GetCalendarService(_settings);
+                var eventRequest = service.Events.Get(_settings.Value.CalendarId, eventId);
+                var updateEvent = eventRequest.Execute();
+                // updateEvent.GuestsCanInviteOthers = false;
+                // updateEvent.GuestsCanSeeOtherGuests = false;
+                // updateEvent.GuestsCanModify = false;
+                return updateEvent;
+            }
+            catch (Exception exception)
+            {
+                throw new ApplicationException($"Updating calendar event failed !! {exception}");
             }
         }
 
