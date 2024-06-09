@@ -30,7 +30,8 @@ namespace Sample.GoogleCalendarApi.Services
                 var eventAttendee = new EventAttendee
                 {
                     Email = attendee.AttendeesEmail,
-                    DisplayName = attendee.AttendeesName
+                    DisplayName = attendee.AttendeesName,
+                    Comment = attendee.AlocomHangoutLink
                 };
                 eventAttendees.Add(eventAttendee);
             }
@@ -38,7 +39,7 @@ namespace Sample.GoogleCalendarApi.Services
             var createdEvent = new Event()
             {
                 ColorId = "11",
-                Description = $"پیوستن به جلسه آنلاین: {model.OnlineMeetingLink}\n\n {model.Description}",
+                Description = $"پیوستن به جلسه آنلاین: {model.AlocomHangoutLink}\n\n {model.Description}",
                 Summary = model.Summary,
                 Location = model.Location,
                 Start = new EventDateTime()
