@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\e.ghafouri\\Desktop\\FromGitHub\\Calendar\\CalendarApi\\CalendarApi\\Sample.GoogleCalendarApi.csproj": {}
+    "/Users/edrisym/Desktop/GoogleApi/CalendarApi/Sample.GoogleCalendarApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\e.ghafouri\\Desktop\\FromGitHub\\Calendar\\CalendarApi\\CalendarApi\\Sample.GoogleCalendarApi.csproj": {
+    "/Users/edrisym/Desktop/GoogleApi/CalendarApi/Sample.GoogleCalendarApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\e.ghafouri\\Desktop\\FromGitHub\\Calendar\\CalendarApi\\CalendarApi\\Sample.GoogleCalendarApi.csproj",
+        "projectUniqueName": "/Users/edrisym/Desktop/GoogleApi/CalendarApi/Sample.GoogleCalendarApi.csproj",
         "projectName": "Sample.GoogleCalendarApi",
-        "projectPath": "C:\\Users\\e.ghafouri\\Desktop\\FromGitHub\\Calendar\\CalendarApi\\CalendarApi\\Sample.GoogleCalendarApi.csproj",
-        "packagesPath": "C:\\Users\\e.ghafouri\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\e.ghafouri\\Desktop\\FromGitHub\\Calendar\\CalendarApi\\CalendarApi\\obj\\",
+        "projectPath": "/Users/edrisym/Desktop/GoogleApi/CalendarApi/Sample.GoogleCalendarApi.csproj",
+        "packagesPath": "/Users/edrisym/.nuget/packages/",
+        "outputPath": "/Users/edrisym/Desktop/GoogleApi/CalendarApi/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\e.ghafouri\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/edrisym/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -91,7 +89,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -103,7 +102,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.204/RuntimeIdentifierGraph.json"
         }
       }
     }

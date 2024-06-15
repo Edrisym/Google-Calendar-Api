@@ -36,10 +36,10 @@ namespace Sample.GoogleCalendarApi.Services
                 eventAttendees.Add(eventAttendee);
             }
 
-            var createdEvent = new Event()
-            {
+            var createdEvent = new Event
+            {  
                 ColorId = "11",
-                Description = $"پیوستن به جلسه آنلاین: {model.AlocomHangoutLink}\n\n {model.Description}",
+                Description = model.Description,
                 Summary = model.Summary,
                 Location = model.Location,
                 Start = new EventDateTime()
