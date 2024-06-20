@@ -7,7 +7,7 @@ namespace Sample.GoogleCalendarApi.Services
     public interface IGoogleCalendarService
     {
         Event CreateEvent(EventModel model); 
-        Event UpdateEvent(string eventId);
+        Event? UpdateEvent(string eventId,EventModel eventModel);
         string GetAuthCode();
         bool RevokeToken();
         bool RefreshAccessToken(/*string clientId, string clientSecret, string scopes*/);

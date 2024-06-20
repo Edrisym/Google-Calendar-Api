@@ -37,11 +37,11 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.MapPost(@"test/route", (EventModel model, IGoogleCalendarService _service) =>
-{
-    var createdEvent = _service.CreateEvent(model);
-    return createdEvent;
-});
+// app.MapPost(@"test/route", (EventModel model, IGoogleCalendarService _service) =>
+// {
+//     var createdEvent = _service.CreateEvent(model);
+//     return createdEvent;
+// });
 app.MapControllers();
 
 app.Run();

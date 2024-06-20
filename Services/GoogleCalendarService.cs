@@ -1,4 +1,5 @@
-﻿using Google.Apis.Calendar.v3.Data;
+﻿using Google.Apis.Calendar.v3;
+using Google.Apis.Calendar.v3.Data;
 using Newtonsoft.Json.Linq;
 using Sample.GoogleCalendarApi.Settings;
 using RestSharp;
@@ -22,7 +23,7 @@ namespace Sample.GoogleCalendarApi.Services
             _oAuthService = oAuthService;
         }
 
-        private static Event Create(EventModel model)
+        private static Event MakeAnEvent(EventModel model)
         {
             var eventAttendees = new List<EventAttendee>();
             foreach (var attendee in model.Attendees)
@@ -37,7 +38,11 @@ namespace Sample.GoogleCalendarApi.Services
             }
 
             var createdEvent = new Event
-            {  
+            {
+                Creator = new Event.CreatorData()
+                {
+                    DisplayName = "شرکت حساب رایان"
+                },
                 ColorId = "11",
                 Description = model.Description,
                 Summary = model.Summary,
@@ -62,7 +67,7 @@ namespace Sample.GoogleCalendarApi.Services
         {
             try
             {
-                var newEvent = Create(model);
+                var newEvent = MakeAnEvent(model);
                 var service = _oAuthService.GetCalendarService(_settings);
 
                 var eventRequest = service.Events.Insert(newEvent, _settings.Value.CalendarId);
@@ -71,8 +76,8 @@ namespace Sample.GoogleCalendarApi.Services
                 eventRequest.ConferenceDataVersion = 1;
 
                 var createdEvent = eventRequest.Execute();
-                // createdEvent.GuestsCanModify = false;
-                Console.WriteLine($"Event created: {createdEvent.HtmlLink}");
+                createdEvent.GuestsCanModify = false;
+                Console.WriteLine($"Event created: {createdEvent.Id}");
 
                 return createdEvent;
             }
@@ -82,21 +87,46 @@ namespace Sample.GoogleCalendarApi.Services
             }
         }
 
-        public Event UpdateEvent(string eventId)
+
+        private Event? getEventById(string eventId)
         {
+            var service = _oAuthService
+                .GetCalendarService(_settings);
+            
+            var events = service.Events.List(_settings.Value.CalendarId).Execute();
+            
+            var eventItem = events.Items
+                .FirstOrDefault(x => x.Id == eventId);
+            
+            return eventItem;
+        }
+
+        public Event? UpdateEvent(string eventId, EventModel eventModel)
+        {
+            var eventFound = getEventById(eventId);
+            if (eventFound is null)
+            {
+                return null;
+            }
+            
+            var madeEvent = MakeAnEvent(eventModel);
+            
             try
             {
-                var service = _oAuthService.GetCalendarService(_settings);
-                var eventRequest = service.Events.Get(_settings.Value.CalendarId, eventId);
-                var updateEvent = eventRequest.Execute();
-                // updateEvent.GuestsCanInviteOthers = false;
-                // updateEvent.GuestsCanSeeOtherGuests = false;
-                // updateEvent.GuestsCanModify = false;
-                return updateEvent;
+                var service = _oAuthService
+                    .GetCalendarService(_settings);
+                
+                var request = service.Events
+                    .Update(madeEvent, _settings.Value.CalendarId, eventId);
+                
+                request.SendNotifications = true;
+                
+                var eventMade = request.Execute();
+                return eventMade;
             }
             catch (Exception exception)
             {
-                throw new ApplicationException($"Updating calendar event failed !! {exception}");
+                throw new ApplicationException($"Updating calendar event failed!! {exception}");
             }
         }
 
