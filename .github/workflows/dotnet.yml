@@ -1,39 +1,72 @@
-# This workflow will build a .NET project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
-
-name: .NET
+name: CI/CD Pipeline
 
 on:
   push:
-    branches: ["master"]
+    branches:
+    - main
+    - develop
   pull_request:
-    branches: ["master"]
+    branches:
+    - main
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
+    # Check out the repository code
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    # Set up .NET SDK
+    - name: Set up .NET
+      uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 8.0.x
-    - name: Restore dependencies
+        dotnet-version: '6.0' # Adjust based on your .NET version
+
+    # Restore dependencies
+    - name: Restore Dependencies
       run: dotnet restore
 
-    - name: Build
-      run: dotnet build --no-restore
+    # Build the project
+    - name: Build Project
+      run: dotnet build --configuration Release
 
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+    # Run tests
+    - name: Run Tests
+      run: dotnet test --configuration Release
 
-    - name: Publish Artifact
-      run: dotnet publish -c Release -o ./output
+    # # Publish test results (optional)
+    # - name: Publish Test Results
+    #   if: always()
+    #   uses: actions/upload-artifact@v3
+    #   with:
+    #     name: test-results
+    #     path: **/TestResults/*.xml
 
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v3
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment: production
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    # Set up .NET SDK
+    - name: Set up .NET
+      uses: actions/setup-dotnet@v3
       with:
-        name: published-app
-        path: ./output
+        dotnet-version: '6.0' # Adjust based on your .NET version
+
+    # Deploy the application
+    - name: Deploy to Production
+      run: |
+        echo "Deploying to production..."
+        # Add your deployment commands here
+        # e.g., deploying to Azure, AWS, or a remote server
+
+    # Notify on successful deployment (optional)
+    - name: Notify
+      if: success()
+      run: echo "Deployment to production was successful!"
