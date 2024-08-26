@@ -44,6 +44,17 @@ jobs:
     #     name: test-results
     #     path: **/TestResults/*.xml
 
+    - name: Publish Artifact
+      run: dotnet publish -c Release -o ./output
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: published-app
+        path: ./output
+
+
+
   deploy:
     runs-on: ubuntu-latest
     needs: build
