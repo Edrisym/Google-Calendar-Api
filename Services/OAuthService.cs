@@ -4,11 +4,11 @@ using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Linq;
 using Google.Apis.Auth.OAuth2.Flows;
 using Google.Apis.Auth.OAuth2.Responses;
-using Sample.GoogleCalendarApi.Settings;
 using Google.Apis.Services;
+using GoogleCalendarApi.Settings;
 
 
-namespace Sample.GoogleCalendarApi.Services;
+namespace GoogleCalendarApi.Services;
 
 public class OAuthService : IOAuthService
 {

@@ -1,13 +1,14 @@
 ﻿using Google.Apis.Calendar.v3;
 using Google.Apis.Calendar.v3.Data;
+using GoogleCalendarApi.Common.Model;
+using GoogleCalendarApi.Settings;
 using Newtonsoft.Json.Linq;
-using Sample.GoogleCalendarApi.Settings;
 using RestSharp;
 using Newtonsoft.Json;
-using Sample.GoogleCalendarApi.Common.Model;
 using Microsoft.Extensions.Options;
+using Method = GoogleCalendarApi.Common.Method;
 
-namespace Sample.GoogleCalendarApi.Services
+namespace GoogleCalendarApi.Services
 {
     public class GoogleCalendarService : IGoogleCalendarService
     {
@@ -192,7 +193,7 @@ namespace Sample.GoogleCalendarApi.Services
                 var include_granted_scopes = "true";
                 // var prompt = "select_account";
                 var login_hint = _settings.Value.LoginHint;
-                string redirect_uri_encode = CalendarApi.Common.Method.UrlEncodeForGoogle(redirectURL);
+                string redirect_uri_encode = Method.UrlEncodeForGoogle(redirectURL);
                 var mainURL = string.Format(scopeURL1, redirect_uri_encode, state, response_type, client_id, scope,
                     access_type, include_granted_scopes, login_hint);
 

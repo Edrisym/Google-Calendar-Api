@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using GoogleCalendarApi.Services;
+using GoogleCalendarApi.Settings;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using Sample.GoogleCalendarApi.Services;
-using Sample.GoogleCalendarApi.Settings;
 
-namespace Sample.GoogleCalendarApi.Controllers
+namespace GoogleCalendarApi.Controllers
 {
     [ApiController]
     public class OAuthController : ControllerBase

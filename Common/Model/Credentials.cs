@@ -1,4 +1,4 @@
-namespace Sample.GoogleCalendarApi.Common.Model;
+namespace GoogleCalendarApi.Common.Model;
 
 public class Credentials
 {

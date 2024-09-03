@@ -1,8 +1,8 @@
 ﻿
 using Google.Apis.Calendar.v3.Data;
-using Sample.GoogleCalendarApi.Common.Model;
+using GoogleCalendarApi.Common.Model;
 
-namespace Sample.GoogleCalendarApi.Services
+namespace GoogleCalendarApi.Services
 {
     public interface IGoogleCalendarService
     {

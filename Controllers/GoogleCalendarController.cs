@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Sample.GoogleCalendarApi.Common.Model;
-using Sample.GoogleCalendarApi.Services;
+﻿using GoogleCalendarApi.Common.Model;
+using GoogleCalendarApi.Services;
+using Microsoft.AspNetCore.Mvc;
 
-namespace Sample.GoogleCalendarApi.Controllers
+namespace GoogleCalendarApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

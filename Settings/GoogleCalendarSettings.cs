@@ -1,4 +1,4 @@
-﻿namespace Sample.GoogleCalendarApi.Settings
+﻿namespace GoogleCalendarApi.Settings
 {
     public class GoogleCalendarSettings : IGoogleCalendarSettings
     {

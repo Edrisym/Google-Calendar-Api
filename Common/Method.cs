@@ -1,7 +1,7 @@
 using System.Text;
 using NodaTime.TimeZones;
 
-namespace CalendarApi.Common;
+namespace GoogleCalendarApi.Common;
 
 public class Method
 {

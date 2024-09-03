@@ -409,14 +409,14 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
-obj/Debug/net6.0/refint/Sample.GoogleCalendarApi.dll
-bin/Debug/net6.0/Sample.GoogleCalendarApi.dll
-bin/Debug/net6.0/Sample.GoogleCalendarApi.dll
-bin/Debug/net6.0/Sample.GoogleCalendarApi.pdb
-obj/Debug/net6.0/Sample.GoogleCalendarApi.AssemblyInfo.cs
-obj/Debug/net6.0/Sample.GoogleCalendarApi.AssemblyInfoInputs.cache
-obj/Debug/net6.0/Sample.GoogleCalendarApi.dll
-obj/Debug/net6.0/Sample.GoogleCalendarApi.pdb
-obj/Debug/net6.0/Sample.GoogleCalendarApi.sourcelink.json
+obj/Debug/net6.0/refint/GoogleCalendarApi.dll
+bin/Debug/net6.0/GoogleCalendarApi.dll
+bin/Debug/net6.0/GoogleCalendarApi.pdb
+obj/Debug/net6.0/GoogleCalendarApi.AssemblyInfo.cs
+obj/Debug/net6.0/GoogleCalendarApi.AssemblyInfoInputs.cache
+obj/Debug/net6.0/GoogleCalendarApi.dll
+obj/Debug/net6.0/GoogleCalendarApi.pdb
+obj/Debug/net6.0/GoogleCalendarApi.sourcelink.json
 obj/Debug/net6.0/ref/Sample.GoogleCalendarApi.dll
 obj/Debug/net6.0/refint/Sample.GoogleCalendarApi.dll
+/appsettings.Development.json

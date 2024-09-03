@@ -1,6 +1,4 @@
-using Google.Apis.Calendar.v3.Data;
-
-namespace Sample.GoogleCalendarApi.Common.Model;
+namespace GoogleCalendarApi.Common.Model;
 
 public class EventModel
 {
