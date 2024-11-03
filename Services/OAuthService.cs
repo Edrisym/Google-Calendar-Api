@@ -16,6 +16,7 @@ public class OAuthService : IOAuthService
     }
 
 
+    //TODO make it asynchronous
     public CalendarService GetCalendarService(GoogleCalendarSettings calendarSetting)
     {
         var secrets = new ClientSecrets
