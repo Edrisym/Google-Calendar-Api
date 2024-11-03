@@ -8,8 +8,7 @@ namespace GoogleCalendarApi.Services;
 
 public interface IOAuthService
 {
-    JObject CredentialsFile();
-    JObject TokenFile();
+    Task<JObject>  CredentialsFileAsync();
+    Task<JObject>  TokenFileAsync();
     CalendarService GetCalendarService(IOptionsSnapshot<GoogleCalendarSettings> calendarSetting);
-
 }

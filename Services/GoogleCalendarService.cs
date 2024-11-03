@@ -17,9 +17,11 @@ namespace GoogleCalendarApi.Services
         private const string _ScopeToken = "https://oauth2.googleapis.com/token";
         private const string _TokenPath = "OAuthFiles/Token.json";
         private const string _CredentialsPath = "OAuthFiles/Credentials.json";
+        private const string jsonFilePath = "appsettings.Development.json";
 
         public GoogleCalendarService(IOptionsSnapshot<GoogleCalendarSettings> settings, IOAuthService oAuthService)
         {
+            //TODO -- Value
             _settings = settings;
             _oAuthService = oAuthService;
         }
@@ -64,11 +66,12 @@ namespace GoogleCalendarApi.Services
             return createdEvent;
         }
 
-        public Event CreateEvent(EventModel model)
+        public async Task<Event> CreateEventAsync(EventModel model)
         {
             try
             {
                 var newEvent = MakeAnEvent(model);
+                //TODO -- to asynchronous   
                 var service = _oAuthService.GetCalendarService(_settings);
 
                 var eventRequest = service.Events.Insert(newEvent, _settings.Value.CalendarId);
@@ -76,9 +79,8 @@ namespace GoogleCalendarApi.Services
                 eventRequest.SendNotifications = true;
                 eventRequest.ConferenceDataVersion = 1;
 
-                var createdEvent = eventRequest.Execute();
+                var createdEvent = await eventRequest.ExecuteAsync();
                 createdEvent.GuestsCanModify = false;
-                Console.WriteLine($"Event created: {createdEvent.Id}");
 
                 return createdEvent;
             }
@@ -89,40 +91,33 @@ namespace GoogleCalendarApi.Services
         }
 
 
-        private Event? getEventById(string eventId)
+        private async Task<Event?> GetEventByIdAsync(string eventId)
         {
-            var service = _oAuthService
-                .GetCalendarService(_settings);
-            
-            var events = service.Events.List(_settings.Value.CalendarId).Execute();
-            
-            var eventItem = events.Items
-                .FirstOrDefault(x => x.Id == eventId);
-            
-            return eventItem;
+            var service = _oAuthService.GetCalendarService(_settings);
+
+            var events = await service.Events.List(_settings.Value.CalendarId).ExecuteAsync();
+
+            return events.Items.FirstOrDefault(x => x.Id == eventId);
         }
 
-        public Event? UpdateEvent(string eventId, EventModel eventModel)
+        public async Task<Event?> UpdateEventAsync(string eventId, EventModel eventModel)
         {
-            var eventFound = getEventById(eventId);
+            var eventFound = await GetEventByIdAsync(eventId);
             if (eventFound is null)
             {
                 return null;
             }
-            
+
             var madeEvent = MakeAnEvent(eventModel);
-            
+
             try
             {
-                var service = _oAuthService
-                    .GetCalendarService(_settings);
-                
-                var request = service.Events
-                    .Update(madeEvent, _settings.Value.CalendarId, eventId);
-                
+                var service = _oAuthService.GetCalendarService(_settings);
+
+                var request = service.Events.Update(madeEvent, _settings.Value.CalendarId, eventId);
                 request.SendNotifications = true;
-                
-                var eventMade = request.Execute();
+
+                var eventMade = await request.ExecuteAsync();
                 return eventMade;
             }
             catch (Exception exception)
@@ -131,10 +126,10 @@ namespace GoogleCalendarApi.Services
             }
         }
 
-        public bool RefreshAccessToken()
+        public async Task<bool> RefreshAccessTokenAsync()
         {
-            var credentialFile = _oAuthService.CredentialsFile();
-            var tokenFile = _oAuthService.TokenFile();
+            var credentialFile = await _oAuthService.CredentialsFileAsync();
+            var tokenFile = await _oAuthService.TokenFileAsync();
 
             var request = new RestRequest();
 
@@ -151,34 +146,30 @@ namespace GoogleCalendarApi.Services
                 var newTokens = JObject.Parse(response.Content);
                 newTokens["refresh_token"] = tokenFile["refresh_token"].ToString();
 
-                UpdateAppSettingJson(newTokens["refresh_token"].ToString());
+                await UpdateAppSettingJsonAsync(newTokens["refresh_token"].ToString());
 
-                File.WriteAllText(_TokenPath, newTokens.ToString());
+                await File.WriteAllTextAsync(_TokenPath, newTokens.ToString());
             }
 
             return response.IsSuccessStatusCode;
         }
 
-        public void UpdateAppSettingJson(string refreshToken)
+        private async Task UpdateAppSettingJsonAsync(string refreshToken)
         {
-            string jsonFilePath = "appsettings.Development.json";
-            string jsonString = File.ReadAllText(jsonFilePath);
+            var jsonString = await File.ReadAllTextAsync(jsonFilePath);
 
-            dynamic jsonObj = JsonConvert.DeserializeObject(jsonString);
+            dynamic jsonObj = JsonConvert.DeserializeObject(jsonString)!;
 
             jsonObj["GoogleCalendarSettings"]["RefreshToken"] = refreshToken;
 
             string updatedJsonString = JsonConvert.SerializeObject(jsonObj, Formatting.Indented);
 
-            File.WriteAllText(jsonFilePath, updatedJsonString);
-
-            Console.WriteLine($"RefreshToken updated successfully. {refreshToken}");
+            await File.WriteAllTextAsync(jsonFilePath, updatedJsonString);
         }
 
 
         public string GetAuthCode()
         {
-            var credentials = JObject.Parse(System.IO.File.ReadAllText(_CredentialsPath));
             try
             {
                 string scopeURL1 =
@@ -194,10 +185,8 @@ namespace GoogleCalendarApi.Services
                 // var prompt = "select_account";
                 var login_hint = _settings.Value.LoginHint;
                 string redirect_uri_encode = Method.UrlEncodeForGoogle(redirectURL);
-                var mainURL = string.Format(scopeURL1, redirect_uri_encode, state, response_type, client_id, scope,
+                return string.Format(scopeURL1, redirect_uri_encode, state, response_type, client_id, scope,
                     access_type, include_granted_scopes, login_hint);
-
-                return mainURL;
             }
             catch (Exception ex)
             {
@@ -205,28 +194,21 @@ namespace GoogleCalendarApi.Services
             }
         }
 
-        public bool RevokeToken()
+        public async Task<bool> RevokeTokenAsync()
         {
-            var token = JObject.Parse(File.ReadAllText(Path.GetFullPath(_TokenPath)));
+            var token = JObject.Parse(await File.ReadAllTextAsync(Path.GetFullPath(_TokenPath)));
             var request = new RestRequest();
 
             request.AddQueryParameter("token", token["access_token"].ToString());
 
             var restClient = new RestClient("https://oauth2.googleapis.com/revoke");
-            var response = restClient.ExecutePost(request);
-
-            if (response.StatusCode == System.Net.HttpStatusCode.OK)
-            {
-                var newtoken = JObject.Parse(System.IO.File.ReadAllText(_TokenPath));
-                Console.WriteLine("successfully revoked the token = {0}", newtoken);
-            }
-
+            var response = await restClient.ExecutePostAsync(request);
             return response.IsSuccessStatusCode;
         }
 
-        public bool GetToken(string code)
+        public async Task<bool> GetTokenAsync(string code)
         {
-            var credentials = JObject.Parse(File.ReadAllText(_CredentialsPath));
+            var credentials = JObject.Parse(await File.ReadAllTextAsync(_CredentialsPath));
 
             //TODO
             var restClient = new RestClient();
@@ -242,36 +224,15 @@ namespace GoogleCalendarApi.Services
 
             restClient = new RestClient(_ScopeToken);
 
-            var response = restClient.ExecutePost(request);
+            var response = await restClient.ExecutePostAsync(request);
 
             //TODO
-            if (response.IsSuccessful == true)
+            if (response.IsSuccessful)
             {
-                var newTokens = JObject.Parse(response.Content);
-                //if (newTokens.HasValues)
-                //{
-                //    UpdateAppSettingJson(newTokens["refresh_token"].ToString());
-                //}
-
-                Console.WriteLine("StatusCode is OK!");
-                Console.WriteLine("request was successfully sent!");
-                File.WriteAllText(_TokenPath, response.Content);
+                await File.WriteAllTextAsync(_TokenPath, response.Content);
             }
 
             return response.IsSuccessful;
-        }
-
-        public void GetColor()
-        {
-            var service = _oAuthService.GetCalendarService(_settings);
-            var colorRequest = service.Colors.Get();
-            var colors = colorRequest.Execute();
-
-            foreach (var color in colors.Event__)
-            {
-                Console.WriteLine(
-                    $"ColorId: {color.Key}, Background: {color.Value.Background}, Foreground: {color.Value.Foreground}");
-            }
         }
     }
 }

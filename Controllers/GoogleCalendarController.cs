@@ -1,4 +1,5 @@
-﻿using GoogleCalendarApi.Common.Model;
+﻿using Google.Apis.Calendar.v3.Data;
+using GoogleCalendarApi.Common.Model;
 using GoogleCalendarApi.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,42 +10,30 @@ namespace GoogleCalendarApi.Controllers
     public class GoogleCalendarController : ControllerBase
     {
         private readonly IGoogleCalendarService _service;
+        private const string MessagePattern = "Event created for the calendar {0}";
 
         public GoogleCalendarController(IGoogleCalendarService service)
         {
             _service = service;
         }
 
-        [HttpPost("CreateEvent")]
-        public IActionResult CreateEvent([FromBody] EventModel model)
+        [HttpPost]
+        public async Task<string> CreateEvent([FromBody] EventModel model)
         {
-            var createdEvent = _service.CreateEvent(model);
-            var eventId = createdEvent.Id;
-            if (eventId != null)
-                return Ok($"Creating event calendar was successfully created : {eventId}");
-            return BadRequest("Creating event calendar failed!");
+            var createdEvent = await _service.CreateEventAsync(model);
+            return string.Format(MessagePattern, createdEvent.Id);
         }
 
         [HttpGet("Revoke")]
-        public IActionResult Revoke()
+        public async Task<bool> Revoke()
         {
-            var statusCode = _service.RevokeToken();
-            if (statusCode)
-                return Ok("Revoking was successfully created");
-            else
-                return BadRequest("Revoking failed!");
+            return await _service.RevokeTokenAsync();
         }
 
-        [HttpPut("UpdateEvent{eventId}")]
-        public IActionResult UpdateEvent(string eventId, [FromBody] EventModel eventModel)
+        [HttpPut("/{eventId}")]
+        public async Task<Event?> UpdateEvent(string eventId, [FromBody] EventModel eventModel)
         {
-            var createdEvent = _service.UpdateEvent(eventId, eventModel);
-            if (createdEvent is null)
-            {
-                return NotFound("Event with this Id was not found !");
-            }
-
-            return Ok(createdEvent);
+            return await _service.UpdateEventAsync(eventId, eventModel);
         }
     }
 }
