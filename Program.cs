@@ -1,11 +1,10 @@
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
 
 builder.Services.Configure<GoogleCalendarSettings>(builder.Configuration.GetSection(nameof(GoogleCalendarSettings)));
-//builder.Services.AddScoped<IGoogleCalendarSettings, GoogleCalendarSettings>();
+//TODO
 builder.Services.AddTransient<IGoogleCalendarService, GoogleCalendarService>();
 builder.Services.AddTransient<IOAuthService, OAuthService>();
 
