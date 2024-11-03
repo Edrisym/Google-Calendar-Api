@@ -16,15 +16,15 @@ public class OAuthService : IOAuthService
     }
 
 
-    public CalendarService GetCalendarService(IOptionsSnapshot<GoogleCalendarSettings> calendarSetting)
+    public CalendarService GetCalendarService(GoogleCalendarSettings calendarSetting)
     {
         var secrets = new ClientSecrets
         {
-            ClientId = calendarSetting.Value.ClientId,
-            ClientSecret = calendarSetting.Value.ClientSecret
+            ClientId = calendarSetting.ClientId,
+            ClientSecret = calendarSetting.ClientSecret
         };
 
-        var token = new TokenResponse { RefreshToken = calendarSetting.Value.RefreshToken };
+        var token = new TokenResponse { RefreshToken = calendarSetting.RefreshToken };
 
         var flow = new GoogleAuthorizationCodeFlow(
             new GoogleAuthorizationCodeFlow.Initializer
@@ -32,12 +32,13 @@ public class OAuthService : IOAuthService
                 ClientSecrets = secrets
             });
 
-        var credential = new UserCredential(flow, calendarSetting.Value.User, token);
+
+        var credential = new UserCredential(flow, calendarSetting.User, token);
 
         var services = new CalendarService(new BaseClientService.Initializer()
         {
             HttpClientInitializer = credential,
-            ApplicationName = calendarSetting.Value.ApplicationName,
+            ApplicationName = calendarSetting.ApplicationName,
         });
         return services;
     }

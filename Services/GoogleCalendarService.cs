@@ -62,7 +62,7 @@ public class GoogleCalendarService : IGoogleCalendarService
         {
             var newEvent = MakeAnEvent(model);
             //TODO -- to asynchronous   
-            var service = _oAuthService.GetCalendarService(_settings);
+            var service = _oAuthService.GetCalendarService(_settings.Value);
 
             var eventRequest = service.Events.Insert(newEvent, _settings.Value.CalendarId);
 
@@ -83,7 +83,7 @@ public class GoogleCalendarService : IGoogleCalendarService
 
     private async Task<Event?> GetEventByIdAsync(string eventId)
     {
-        var service = _oAuthService.GetCalendarService(_settings);
+        var service = _oAuthService.GetCalendarService(_settings.Value);
 
         var events = await service.Events.List(_settings.Value.CalendarId).ExecuteAsync();
 
@@ -102,7 +102,7 @@ public class GoogleCalendarService : IGoogleCalendarService
 
         try
         {
-            var service = _oAuthService.GetCalendarService(_settings);
+            var service = _oAuthService.GetCalendarService(_settings.Value);
 
             var request = service.Events.Update(madeEvent, _settings.Value.CalendarId, eventId);
             request.SendNotifications = true;

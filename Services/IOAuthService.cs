@@ -4,5 +4,5 @@ public interface IOAuthService
 {
     Task<JObject> CredentialsFileAsync();
     Task<JObject> TokenFileAsync();
-    CalendarService GetCalendarService(IOptionsSnapshot<GoogleCalendarSettings> calendarSetting);
+    CalendarService GetCalendarService(GoogleCalendarSettings calendarSetting);
 }
