@@ -4,9 +4,9 @@ builder.Services.AddControllers();
 
 
 builder.Services.Configure<GoogleCalendarSettings>(builder.Configuration.GetSection(nameof(GoogleCalendarSettings)));
-//TODO
-builder.Services.AddTransient<IGoogleCalendarService, GoogleCalendarService>();
-builder.Services.AddTransient<IOAuthService, OAuthService>();
+
+builder.Services.AddScoped<IGoogleCalendarService, GoogleCalendarService>();
+builder.Services.AddScoped<IOAuthService, OAuthService>();
 
 var app = builder.Build();
 
