@@ -8,18 +8,6 @@ builder.Services.Configure<GoogleCalendarSettings>(builder.Configuration.GetSect
 builder.Services.AddTransient<IGoogleCalendarService, GoogleCalendarService>();
 builder.Services.AddTransient<IOAuthService, OAuthService>();
 
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowAll",
-        builder =>
-        {
-            builder.AllowAnyOrigin()
-                   .AllowAnyMethod()
-                   .AllowAnyHeader();
-        });
-}); 
-builder.Services.AddControllers().AddNewtonsoftJson();
-
 var app = builder.Build();
 
 
