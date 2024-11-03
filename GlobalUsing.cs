@@ -1,0 +1,17 @@
+global using Google.Apis.Calendar.v3.Data;
+global using GoogleCalendarApi.Common.Model;
+global using GoogleCalendarApi.Settings;
+global using Newtonsoft.Json.Linq;
+global using RestSharp;
+global using Newtonsoft.Json;
+global using Microsoft.Extensions.Options;
+global using Method = GoogleCalendarApi.Common.Method;
+global using Google.Apis.Calendar.v3;
+global using Google.Apis.Auth.OAuth2;
+global using Google.Apis.Auth.OAuth2.Flows;
+global using Google.Apis.Auth.OAuth2.Responses;
+global using Google.Apis.Services;
+global using GoogleCalendarApi.Services;
+global using Microsoft.AspNetCore.Mvc;
+global using System.Text;
+global using NodaTime.TimeZones;

@@ -4,5 +4,4 @@ public class Credentials
 {
     public string TokenJson { get; set; }
     public string CredentialsJson { get; set; }
-
 }

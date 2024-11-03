@@ -1,39 +1,33 @@
-﻿using Google.Apis.Calendar.v3.Data;
-using GoogleCalendarApi.Common.Model;
-using GoogleCalendarApi.Services;
-using Microsoft.AspNetCore.Mvc;
+﻿namespace GoogleCalendarApi.Controllers;
 
-namespace GoogleCalendarApi.Controllers
+[Route("api/[controller]")]
+[ApiController]
+public class GoogleCalendarController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class GoogleCalendarController : ControllerBase
+    private readonly IGoogleCalendarService _service;
+    private const string MessagePattern = "Event created for the calendar {0}";
+
+    public GoogleCalendarController(IGoogleCalendarService service)
     {
-        private readonly IGoogleCalendarService _service;
-        private const string MessagePattern = "Event created for the calendar {0}";
+        _service = service;
+    }
 
-        public GoogleCalendarController(IGoogleCalendarService service)
-        {
-            _service = service;
-        }
+    [HttpPost]
+    public async Task<string> CreateEvent([FromBody] EventModel model)
+    {
+        var createdEvent = await _service.CreateEventAsync(model);
+        return string.Format(MessagePattern, createdEvent.Id);
+    }
 
-        [HttpPost]
-        public async Task<string> CreateEvent([FromBody] EventModel model)
-        {
-            var createdEvent = await _service.CreateEventAsync(model);
-            return string.Format(MessagePattern, createdEvent.Id);
-        }
+    [HttpGet("Revoke")]
+    public async Task<bool> Revoke()
+    {
+        return await _service.RevokeTokenAsync();
+    }
 
-        [HttpGet("Revoke")]
-        public async Task<bool> Revoke()
-        {
-            return await _service.RevokeTokenAsync();
-        }
-
-        [HttpPut("/{eventId}")]
-        public async Task<Event?> UpdateEvent(string eventId, [FromBody] EventModel eventModel)
-        {
-            return await _service.UpdateEventAsync(eventId, eventModel);
-        }
+    [HttpPut("/{eventId}")]
+    public async Task<Event?> UpdateEvent(string eventId, [FromBody] EventModel eventModel)
+    {
+        return await _service.UpdateEventAsync(eventId, eventModel);
     }
 }

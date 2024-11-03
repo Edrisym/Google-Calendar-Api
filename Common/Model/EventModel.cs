@@ -16,6 +16,4 @@ public class Attendee
     public string AttendeesEmail { get; set; }
     public string AttendeesName { get; set; }
     public string AlocomHangoutLink { get; set; } = "";
-
 }
-

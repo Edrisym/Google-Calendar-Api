@@ -1,7 +1,3 @@
-using GoogleCalendarApi.Common.Model;
-using GoogleCalendarApi.Services;
-using GoogleCalendarApi.Settings;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();

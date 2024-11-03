@@ -1,15 +1,3 @@
-using System.Net;
-using Google.Apis.Auth.OAuth2;
-using Google.Apis.Calendar.v3;
-using Microsoft.Extensions.Options;
-using Newtonsoft.Json.Linq;
-using Google.Apis.Auth.OAuth2.Flows;
-using Google.Apis.Auth.OAuth2.Requests;
-using Google.Apis.Auth.OAuth2.Responses;
-using Google.Apis.Services;
-using GoogleCalendarApi.Settings;
-
-
 namespace GoogleCalendarApi.Services;
 
 public class OAuthService : IOAuthService
