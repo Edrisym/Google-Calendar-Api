@@ -21,18 +21,18 @@ public class Method
         return result.ToString();
     }
 
-    public static string WindowsToIana(string windowsTimeZoneId)
-    {
-        if (windowsTimeZoneId.Equals("UTC", StringComparison.OrdinalIgnoreCase))
-            return "Etc/UTC";
-
-        if (windowsTimeZoneId.Equals("Iran Standard Time", StringComparison.OrdinalIgnoreCase))
-            return "Asia/Tehran";
-
-        var tzdbSource = TzdbDateTimeZoneSource.Default;
-        var windowsMapping = tzdbSource.WindowsMapping.PrimaryMapping
-            .FirstOrDefault(mapping => mapping.Key.Equals(windowsTimeZoneId, StringComparison.OrdinalIgnoreCase));
-
-        return windowsMapping.Value;
-    }
+    // public static string WindowsToIana(string windowsTimeZoneId)
+    // {
+    //     if (windowsTimeZoneId.Equals("UTC", StringComparison.OrdinalIgnoreCase))
+    //         return "Etc/UTC";
+    //
+    //     if (windowsTimeZoneId.Equals("Iran Standard Time", StringComparison.OrdinalIgnoreCase))
+    //         return "Asia/Tehran";
+    //
+    //     var tzdbSource = TzdbDateTimeZoneSource.Default;
+    //     var windowsMapping = tzdbSource.WindowsMapping.PrimaryMapping
+    //         .FirstOrDefault(mapping => mapping.Key.Equals(windowsTimeZoneId, StringComparison.OrdinalIgnoreCase));
+    //
+    //     return windowsMapping.Value;
+    // }
 }

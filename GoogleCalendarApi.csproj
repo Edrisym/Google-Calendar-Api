@@ -5,20 +5,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Aspose.Email" Version="24.5.0" />
     <PackageReference Include="Google.Apis" Version="1.68.0" />
     <PackageReference Include="Google.Apis.Auth" Version="1.67.0" />
     <PackageReference Include="Google.Apis.Auth.AspNetCore3" Version="1.67.0" />
     <PackageReference Include="Google.Apis.Calendar.v3" Version="1.67.0.3374" />
     <PackageReference Include="Google.Apis.Drive.v2" Version="1.67.0.3296" />
-    <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="8.0.4" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.30" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="8.0.2" />
-    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="8.0.0" />
-    <PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="NodaTime" Version="3.1.11" />
-    <PackageReference Include="RestSharp" Version="110.2.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="RestSharp" Version="112.1.0" />
   </ItemGroup>
 </Project>

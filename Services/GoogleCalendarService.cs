@@ -123,20 +123,20 @@ public class GoogleCalendarService : IGoogleCalendarService
 
         var request = new RestRequest();
 
-        request.AddQueryParameter("client_id", credentialFile["client_id"].ToString());
-        request.AddQueryParameter("client_secret", credentialFile["client_secret"].ToString());
+        request.AddQueryParameter("client_id", credentialFile["client_id"]!.ToString());
+        request.AddQueryParameter("client_secret", credentialFile["client_secret"]!.ToString());
         request.AddQueryParameter("grant_type", "refresh_token");
-        request.AddQueryParameter("refresh_token", tokenFile["refresh_token"].ToString());
+        request.AddQueryParameter("refresh_token", tokenFile["refresh_token"]!.ToString());
 
         var restClient = new RestClient(_ScopeToken);
 
-        var response = restClient.ExecutePost(request);
+        var response = await restClient.ExecutePostAsync(request);
         if (response.IsSuccessStatusCode)
         {
-            var newTokens = JObject.Parse(response.Content);
-            newTokens["refresh_token"] = tokenFile["refresh_token"].ToString();
+            var newTokens = JObject.Parse(response.Content!);
+            newTokens["refresh_token"] = tokenFile["refresh_token"]!.ToString();
 
-            await UpdateAppSettingJsonAsync(newTokens["refresh_token"].ToString());
+            await UpdateAppSettingJsonAsync(newTokens["refresh_token"]!.ToString());
 
             await File.WriteAllTextAsync(_TokenPath, newTokens.ToString());
         }

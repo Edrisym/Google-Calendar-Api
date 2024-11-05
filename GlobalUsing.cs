@@ -14,4 +14,3 @@ global using Google.Apis.Services;
 global using GoogleCalendarApi.Services;
 global using Microsoft.AspNetCore.Mvc;
 global using System.Text;
-global using NodaTime.TimeZones;
