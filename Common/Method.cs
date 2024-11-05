@@ -1,8 +1,8 @@
 namespace GoogleCalendarApi.Common;
 
-public class Method
+public static class Method
 {
-    public static string UrlEncodeForGoogle(string url)
+    public static string UrlEncodeForGoogle(this string url)
     {
         var unreservedChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-.~";
         var result = new StringBuilder();

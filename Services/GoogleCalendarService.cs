@@ -1,4 +1,6 @@
-﻿namespace GoogleCalendarApi.Services;
+﻿using GoogleCalendarApi.Common;
+
+namespace GoogleCalendarApi.Services;
 
 public class GoogleCalendarService : IGoogleCalendarService
 {
@@ -174,7 +176,7 @@ public class GoogleCalendarService : IGoogleCalendarService
             var include_granted_scopes = "true";
             // var prompt = "select_account";
             var login_hint = _settings.Value.LoginHint;
-            string redirect_uri_encode = Method.UrlEncodeForGoogle(redirectURL);
+            string redirect_uri_encode = redirectURL.UrlEncodeForGoogle();
             return string.Format(scopeURL1, redirect_uri_encode, state, response_type, client_id, scope,
                 access_type, include_granted_scopes, login_hint);
         }
