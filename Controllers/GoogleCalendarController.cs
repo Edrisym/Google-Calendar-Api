@@ -13,7 +13,7 @@ public class GoogleCalendarController : ControllerBase
     }
 
     [HttpPost("/")]
-    public async Task<string> CreateEvent([FromBody] EventModel model)
+    public async Task<string> CreateEvent([FromQuery] EventModel model)
     {
         var createdEvent = await _service.CreateEventAsync(model);
         return string.Format(MessagePattern, createdEvent.Id);
@@ -26,7 +26,7 @@ public class GoogleCalendarController : ControllerBase
     }
 
     [HttpPut("/{eventId}")]
-    public async Task<Event?> UpdateEvent(string eventId, [FromBody] EventModel eventModel)
+    public async Task<Event?> UpdateEvent(string eventId, [FromQuery] EventModel eventModel)
     {
         return await _service.UpdateEventAsync(eventId, eventModel);
     }
