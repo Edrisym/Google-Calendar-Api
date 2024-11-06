@@ -12,14 +12,14 @@ public class GoogleCalendarController : ControllerBase
         _service = service;
     }
 
-    [HttpPost]
+    [HttpPost("/")]
     public async Task<string> CreateEvent([FromBody] EventModel model)
     {
         var createdEvent = await _service.CreateEventAsync(model);
         return string.Format(MessagePattern, createdEvent.Id);
     }
 
-    [HttpGet("Revoke")]
+    [HttpGet("/Revoke")]
     public async Task<bool> Revoke()
     {
         return await _service.RevokeTokenAsync();

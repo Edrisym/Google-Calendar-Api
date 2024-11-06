@@ -11,7 +11,7 @@ public class OAuthController : ControllerBase
     }
 
     [HttpGet]
-    [Route("oauth/callback")]
+    [Route("/callback")]
     public async Task<bool> Callback(string code, string? error, string state)
     {
         if (string.IsNullOrWhiteSpace(error))
@@ -27,7 +27,7 @@ public class OAuthController : ControllerBase
     }
 
     [HttpGet]
-    [Route("/oauth/getoauthcode")]
+    [Route("/getCode")]
     public IActionResult GetOauthCode()
     {
         var uri = _service.GetAuthCode();

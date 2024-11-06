@@ -176,8 +176,8 @@ public class GoogleCalendarService : IGoogleCalendarService
             var include_granted_scopes = "true";
             // var prompt = "select_account";
             var login_hint = _settings.Value.LoginHint;
-            string redirect_uri_encode = redirectURL.UrlEncodeForGoogle();
-            return string.Format(scopeURL1, redirect_uri_encode, state, response_type, client_id, scope,
+
+            return string.Format(scopeURL1, redirectURL.UrlEncodeForGoogle(), state, response_type, client_id, scope,
                 access_type, include_granted_scopes, login_hint);
         }
         catch (Exception ex)
